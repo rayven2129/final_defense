@@ -24,6 +24,7 @@
 					</td>
 					<td>
 						<select class="btn btn-dark" id="student_type_value_source" onchange="student_type_function()">
+						<option>Please Select Option</option>
 						<option value="Old">Old</option>
 						<option value="New">New</option>
 						<option value="Transferee">Transferee</option>
@@ -56,8 +57,16 @@
 					</td>
 				</tr>
 				<tr>
-					<td><button type="button" class="btn btn-success" onclick="button_div_1()">Next</button></td>
-					<td><button type="button" class="btn btn-secondary" onclick="window.location.assign('index.php')">Cancel</button></td>
+					<td></td>
+					<td>
+						<button type="button" class="btn btn-success form-control" onclick="button_div_1()">Next</button>
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>
+						<button type="button" class="btn btn-secondary form-control" onclick="window.location.assign('index.php')">Cancel</button>
+					</td>
 				</tr>
 			</table>
 
@@ -72,6 +81,7 @@
 					</td>
 					<td>
 						<select class="btn btn-dark" id="gender_type_source" onchange="gender_type_function()">
+							<option>Please Select Option</option>
 							<option value="Male">Male</option>
 							<option value="Female">Female</option>
 						</select>
@@ -96,8 +106,13 @@
 				</tr>
 				<tr>
 					<td></td>
-					<td><button type="button" class="btn btn-success" onclick="button_div_2()">Next</button></td>
-					<td><button type="button" class="btn btn-secondary" onclick="button_div_1_previous()">Previous</button></td>
+					<td><button type="button" class="btn btn-success form-control" onclick="button_div_2()">Next</button></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>
+						<button type="button" class="btn btn-secondary form-control" onclick="button_div_1_previous()">Previous</button>
+					</td>
 				</tr>
 			</table>
 		</div>
@@ -131,8 +146,13 @@
 				</tr>
 				<tr>
 					<td></td>
-					<td><button type="button" class="btn btn-success" onclick="button_div_3()">Next</button></td>
-					<td><button type="button" class="btn btn-secondary" onclick="button_div_2_previous()">Previous</button></td>
+					<td><button type="button" class="btn btn-success form-control" onclick="button_div_3()">Next</button></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>
+						<button type="button" class="btn btn-secondary form-control" onclick="button_div_2_previous()">Previous</button>
+					</td>
 				</tr>
 			</table>
 		</div>
@@ -165,8 +185,12 @@
 				</tr>
 				<tr>
 					<td></td>
-					<td><button type="button" class="btn btn-success" onclick="button_div_4()">Next</button></td>
-					<td><button type="button" class="btn btn-secondary" onclick="button_div_3_previous()">Previous</button></td>
+					<td><button type="button" class="btn btn-success form-control" onclick="button_div_4()">Next</button></td>
+					
+				</tr>
+				<tr>
+					<td></td>
+					<td><button type="button" class="btn btn-secondary form-control" onclick="button_div_3_previous()">Previous</button></td>
 				</tr>
 			</table>
 		</div>
@@ -186,13 +210,25 @@
 						<p>Password: </p>
 					</td>
 					<td>
-						<input type="password" name="password" class="form-control">
+						<input type="password" name="password" id="password_login" class="form-control">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span>Show password</span>
+					</td>
+					<td>
+						<input type="checkbox" id="password_check" onclick="check_function()" class="checkbox-inline">
 					</td>
 				</tr>
 				<tr>
 					<td></td>
-					<td><button type="submit" class="btn btn-success">Register</button></td>
-					<td><button type="button" class="btn btn-secondary" onclick="button_div_4_previous()">Previous</button></td>
+					<td><button type="submit" class="btn btn-success form-control">Register</button></td>
+					
+				</tr>
+				<tr>
+					<td></td>
+					<td><button type="button" class="btn btn-secondary form-control" onclick="button_div_4_previous()">Previous</button></td>
 				</tr>
 			</table>
 		</div>
@@ -208,5 +244,15 @@
 	function gender_type_function(){
 		var x = document.getElementById("gender_type_source").value;
 		document.getElementById("gender_type_result").value = x;
+	}
+</script>
+<script type="text/javascript">
+	function check_function(){
+		var x = document.querySelector("#password_login");
+		if (x.type == "password") {
+			x.type = "text"
+		}else{
+			x.type = "password"
+		}
 	}
 </script>

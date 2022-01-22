@@ -8,12 +8,18 @@ $result = $conn->query($sql);
 $fetch = $result->fetch_array();
 
 
-if ($username == isset($fetch['username']) && $password == isset($fetch['password'])){
-	echo "<script>alert('Success_Database');</script>";
-}elseif ($username == 'admin' && $password == 'admin') {
-	echo "<script>alert('Success_Admin');</script>";
+if (($username == '' && $password == '')) {
+		echo "<script>alert('Wrong username and password');</script>";
+		echo "<script>window.location.assign('index.php')</script>";
 }else{
-	echo "<script>alert('Wrong username and password');</script>";
-	echo "<script>window.location.assign('index.php')</script>";
+	if ($username == isset($fetch['username']) && $password == isset($fetch['password'])){
+	echo "<script>window.location.assign('student_grade_viewing.php');</script>";
+	}elseif ($username == 'admin' && $password == 'admin') {
+		echo "<script>window.location.assign('teacher_admin.php');</script>";
+	}else{
+		echo "<script>alert('Wrong username and password');</script>";
+		echo "<script>window.location.assign('index.php')</script>";
+	}
 }
+
 ?>
