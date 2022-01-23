@@ -19,16 +19,10 @@ $student_type = $_POST['student_type'];
 $sql = "INSERT INTO enrollment_system(last_name,first_name,middle_name,gender,date_of_birth,place_of_birth,address,contact_number,email_address,guardian_name,guardian_contact_number,guardian_relation_to_student,username,password,student_status) VALUES ('$last_name','$first_name','$middle_name','$gender_type_result','$date_of_birth','$place_of_birth','$complete_address','$contact_number','$email_address','$guardian_name','$guardian_contact_number','$guardian_relation_to_student','$username','$password','$student_type')";
 
 if ($conn->query($sql) == TRUE) {
-	echo "OK";
+	echo "<script>alert('Created Account Succesfully!');</script>";
+	echo "<script>window.location.assign('index.php');</script>";
 }else{
-	echo "Not ok";
+	echo "<script>alert('Created Account Failed!');</script>";
+	echo "<script>window.location.assign('index.php');</script>";
 }
-
-
-
-
-
-
-
-
 ?>

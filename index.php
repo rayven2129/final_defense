@@ -17,7 +17,7 @@
 	<div class="container-fluid login-content">
 		<form action="login.php" method="POST">
 			<table class="table-design">
-				<tr>
+				<tr>	
 					<td>
 						<p>Username: </p>
 					</td>
@@ -82,17 +82,21 @@ $conn = new mysqli("localhost", "root", "");
 		die();
 	}else{
 		$createDatabase = "CREATE DATABASE IF NOT EXISTS enrollment_grading_system";
-		if($conn ->query($createDatabase) == TRUE){
-			$sql = "CREATE TABLE `enrollment_grading_system`.`enrollment_system` (`student_id` int NOT NULL AUTO_INCREMENT, `last_name` varchar(255) NOT NULL, `first_name` varchar(255) NOT NULL, `middle_name` varchar(255) NOT NULL,` gender` varchar(255) NOT NULL,`date_of_birth` varchar(255) NOT NULL, `place_of_birth` varchar(255) NOT NULL, `nationality` varchar(255) NOT NULL,`religion` varchar(255) NOT NULL,`complete_address` text NOT NULL, `permanent_address` text NOT NULL, `contact_number` varchar(255) NOT NULL, `email_address` varchar(255) NOT NULL, `guardian_name` varchar(255) NOT NULL, `contact_number_guardian` varchar(255) NOT NULL, `guardian_relationship` varchar(255) NOT NULL, PRIMARY KEY (`student_id`));";
+		if($conn -> query($createDatabase) == TRUE){
+			$conn->close();
+			$connectDatabase = new mysqli("localhost","root", "", "enrollment_grading_system");
 
-			if ($conn->query($sql) == TRUE) {
+			$sql = "CREATE TABLE enrollment_system(student_id int(255) AUTO_INCREMENT NOT NULL, last_name VARCHAR(255) NOT NULL, first_name VARCHAR(255) NOT NULL, middle_name VARCHAR(255) NOT NULL, gender VARCHAR(255) NOT NULL,date_of_birth VARCHAR(255) NOT NULL, place_of_birth TEXT NOT NULL,address TEXT NOT NULL,contact_number VARCHAR(255) NOT NULL, email_address VARCHAR(255) NOT NULL, guardian_name VARCHAR(255) NOT NULL, guardian_contact_number VARCHAR(255) NOT NULL, guardian_relation_to_student VARCHAR(255) NOT NULL, username VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, student_status VARCHAR(255) NOT NULL, PRIMARY KEY(student_id))";
+			if ($connectDatabase->query($sql) == TRUE) {
 				echo "YEHEY";
 			}else{
 				echo "AWTS";
 			}
+			$connectDatabase->close();
 		}else{
 			echo "Not CREATE DATABASE";
 		}
+
 	}
 
 
