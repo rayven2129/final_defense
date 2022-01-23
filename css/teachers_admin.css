@@ -1,0 +1,11 @@
+.background-content{
+	width: auto;
+	height: auto;
+}
+.title-navigation{
+	display: flex;
+	justify-content: center;
+}
+.background-content, .header-navigation{
+	background-color: white;
+}
