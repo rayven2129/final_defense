@@ -33,7 +33,7 @@ $fetch = $conn->query($sql);
         </ul>
       </div>
     </nav>
-    <div class="container">
+    <div class="containerbackground-content">
     <table class="table table-hover table-responsive table-bordered">
       <thead>
         <tr class="danger">
@@ -48,6 +48,8 @@ $fetch = $conn->query($sql);
           <th>Guardian Name</th>
           <th>Guardian Contact Number</th>
           <th>Username</th>
+          <th>Edit</th>
+          <th>Delete</th>
         </tr>
       </thead>
       <tbody>
@@ -65,6 +67,8 @@ $fetch = $conn->query($sql);
       		echo "<td>".$row['guardian_name']."</td>";
       		echo "<td class='text-center'>".$row['guardian_contact_number']."</td>";
       		echo "<td>".$row['username']."</td>";
+      		echo "<td><a href='edit.php?id=".$row['student_id']."' target='_blank'>Edit</td>";
+      		echo "<td><a href='delete.php?id=".$row['student_id']."'>Delete</td>";
       		echo "</tr>";
       		}
       	?>

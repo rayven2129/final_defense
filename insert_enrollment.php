@@ -10,27 +10,38 @@ $complete_address = $_POST['place_of_birth'];
 $contact_number = $_POST['contact_number'];
 $email_address = $_POST['email_address'];
 $guardian_name = $_POST['guardian_name'];
-$guardian_contact_number = $_POST['guardian_name'];
+$guardian_contact_number = $_POST['guardian_contact_number'];
 $guardian_relation_to_student = $_POST['guardian_relation_to_student'];
 $username = $_POST['username'];
 $password = $_POST['password'];
 $student_type = $_POST['student_type'];
 
-$sql = "INSERT INTO enrollment_system(last_name,first_name,middle_name,gender,date_of_birth,place_of_birth,address,contact_number,email_address,guardian_name,guardian_contact_number,guardian_relation_to_student,username,password,student_status) VALUES ('$last_name','$first_name','$middle_name','$gender_type_result','$date_of_birth','$place_of_birth','$complete_address','$contact_number','$email_address','$guardian_name','$guardian_contact_number','$guardian_relation_to_student','$username','$password','$student_type')";
+$search_duplicate = "SELECT username FROM enrollment_system WHERE username = '$username'";
+$query = $conn->query($search_duplicate);
+$fetch = $query->fetch_array();
+	if ($username == isset($fetch['username'])) {
+		echo "<script>alert('Username exists');</script>";
+		echo "<script>window.location.assign('enrollment_system.php');</script>";
+	}else{
+		$sql = "INSERT INTO enrollment_system(last_name,first_name,middle_name,gender,date_of_birth,place_of_birth,address,contact_number,email_address,guardian_name,guardian_contact_number,guardian_relation_to_student,username,password,student_status) VALUES ('$last_name','$first_name','$middle_name','$gender_type_result','$date_of_birth','$place_of_birth','$complete_address','$contact_number','$email_address','$guardian_name','$guardian_contact_number','$guardian_relation_to_student','$username','$password','$student_type')";
 
-$second_table = "CREATE TABLE grading_system(id_grades int(255) auto_increment not null, student_id int(255) not null,  )"
+			if ($conn->query($sql) == TRUE) {
+				$insert_second_table = "INSERT into grading_system(student_id) VALUES ((SELECT student_id from enrollment_system WHERE username = '$username'))";
+					if ($conn->query($insert_second_table) == TRUE) {
+						echo "<script>alert('Created Account Success!');</script>";
+						echo "<script>window.location.assign('index.php');</script>";
+					}else{
+						echo "<script>alert('Created Account Failed!');</script>";
+						echo "<script>window.location.assign('index.php');</script>";
+					}
+				
+			}else{
+				echo "<script>alert('Created Account Failed!');</script>";
+				echo "<script>window.location.assign('index.php');</script>";
+			}
+
+	}
 
 
 
-
-
-
-
-if ($conn->query($sql) == TRUE) {
-	echo "<script>alert('Created Account Succesfully!');</script>";
-	echo "<script>window.location.assign('index.php');</script>";
-}else{
-	echo "<script>alert('Created Account Failed!');</script>";
-	echo "<script>window.location.assign('index.php');</script>";
-}
 ?>
