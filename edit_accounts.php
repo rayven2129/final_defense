@@ -33,7 +33,7 @@ $fetch = $conn->query($sql);
         </ul>
       </div>
     </nav>
-    <div class="containerbackground-content">
+    <div class="container background-content">
     <table class="table table-hover table-responsive table-bordered">
       <thead>
         <tr class="danger">
