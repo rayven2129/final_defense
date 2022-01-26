@@ -9,7 +9,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 	<script src="https://kit.fontawesome.com/f9a76d52b7.js" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="js/enrollment_form.js"></script>
-
+	<script type="text/javascript" src="js/global_function.js"></script>
 </head>
 <body>
 	<div class="container-fluid div-header">
@@ -39,7 +39,7 @@
 						<p>Last name: </p>
 					</td>
 					<td>
-						<input type="text" name="last_name" class="form-control">
+						<input type="text" name="last_name" class="form-control" oninput="uppercaseEvent(event)">
 					</td>
 				</tr>
 				<tr>
@@ -47,7 +47,7 @@
 						<p>First name: </p>
 					</td>
 					<td>
-						<input type="text" name="first_name" class="form-control">
+						<input type="text" name="first_name" class="form-control" oninput="uppercaseEvent(event)">
 					</td>
 				</tr>
 				<tr>
@@ -55,7 +55,7 @@
 						<p>Middle name: </p>
 					</td>
 					<td>
-						<input type="text" name="middle_name" class="form-control">
+						<input type="text" name="middle_name" class="form-control" oninput="uppercaseEvent(event)">
 					</td>
 				</tr>
 				<tr>
@@ -84,8 +84,8 @@
 					<td>
 						<select class="btn btn-dark" id="gender_type_source" onchange="gender_type_function()">
 							<option>Please Select Option</option>
-							<option value="Male">Male</option>
-							<option value="Female">Female</option>
+							<option value="MALE">Male</option>
+							<option value="FEMALE">Female</option>
 						</select>
 						<input type="hidden" name="gender_type_result" id="gender_type_result">
 					</td>
@@ -103,7 +103,7 @@
 						<p>Place of Birth: </p>
 					</td>
 					<td>
-						<input type="text" name="place_of_birth" class="form-control">
+						<input type="text" name="place_of_birth" class="form-control" oninput="uppercaseEvent(event)">
 					</td>
 				</tr>
 				<tr>
@@ -127,7 +127,7 @@
 						<p>Address: </p>
 					</td>
 					<td>
-						<input type="text" name="complete_address" class="form-control">
+						<input type="text" name="complete_address" class="form-control" oninput="uppercaseEvent(event)">
 					</td>
 				</tr>
 				<tr>
@@ -166,7 +166,7 @@
 						<p>Guardian's Name: </p>
 					</td>
 					<td>
-						<input type="text" name="guardian_name" class="form-control">
+						<input type="text" name="guardian_name" class="form-control" oninput="uppercaseEvent(event)">
 					</td>
 				</tr>
 				<tr>
@@ -182,7 +182,7 @@
 						<p>Guardian's Relation to Student: </p>
 					</td>
 					<td>
-						<input type="text" name="guardian_relation_to_student" class="form-control">
+						<input type="text" name="guardian_relation_to_student" class="form-control" oninput="uppercaseEvent(event)">
 					</td>
 				</tr>
 				<tr>

@@ -27,7 +27,7 @@ $fetch_res  = $conn->query($sql_statement);
   <link rel="stylesheet" type="text/css" href="css/teachers_admin.css">
   <script src="https://kit.fontawesome.com/f9a76d52b7.js" crossorigin="anonymous"></script>
 </head>
-<body>
+<body onload="window.print()">
 <div class="container">
       <nav class="navbar navbar-inverse">
       <div class="container-fluid">
@@ -43,7 +43,7 @@ $fetch_res  = $conn->query($sql_statement);
       </div>
     </nav>
     <div class="container">
-    <table class="table table-hover table-responsive table-bordered">
+    <table class="table  table-responsive table-bordered">
       <thead>
         <tr class="danger">
           <th>ID GRADES</th>

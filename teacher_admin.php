@@ -1,4 +1,9 @@
 <?php
+session_start();
+if ($_SESSION['username'] == '') {
+	echo "<script>alert('Please Login First');</script>";
+	echo "<script>window.location.assign('index.php');</script>";
+}
 $conn = new mysqli("localhost", "root", "", "enrollment_grading_system");
 $sql = "SELECT * FROM enrollment_system";
 $fetch = $conn->query($sql);
@@ -27,7 +32,7 @@ $fetch = $conn->query($sql);
         <ul class="nav navbar-nav">
           <li class="active"><a href="teacher_admin.php"><i class="fas fa-home"></i> Home</a></li>
           <li><a href="grading_system.php"><i class="fas fa-database"></i> Grading System</a></li>
-          <li><a href="#"><i class="fas fa-file-export"></i> Export Grade</a></li>
+          <li><a href="export_grade.php"><i class="fas fa-file-export"></i> Export Grade</a></li>
           <li><a href="edit_accounts.php"><i class="fas fa-edit"></i> Edit Accounts</a></li>
           <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
         </ul>
