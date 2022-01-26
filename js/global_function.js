@@ -278,3 +278,19 @@ function transmutation_table(x){
                 console.log("Invalid");
               }
 }
+
+function clear_data(){
+   document.getElementById("last_name").value = "";
+   document.getElementById("first_name").value = "";
+   document.getElementById("math").value = "";
+   document.getElementById("science").value = "";
+   document.getElementById("filipino").value = "";
+   document.getElementById("english").value = "";
+   document.getElementById("ap").value = "";
+   document.getElementById("pe").value = "";
+   document.getElementById("health").value = "";
+   document.getElementById("music").value = "";
+   document.getElementById("arts").value = "";
+   document.getElementById("tle").value = "";
+   document.getElementById("esp").value = "";
+}

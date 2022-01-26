@@ -113,7 +113,7 @@ $username = $_POST['username'];
   $sql_edit = "UPDATE enrollment_system set last_name = '$last_name', first_name = '$first_name ', middle_name = '$middle_name', gender = '$gender_type_result', date_of_birth = '$date_of_birth ', address = '$complete_address ', contact_number = '$contact_number', guardian_name = '$guardian_name', guardian_contact_number = '$guardian_contact_number ', username = '$username 'where student_id ='$_GET[id]'";
   if ($conn->query($sql_edit)) {
     echo "<script>alert('Edit Account Success!');</script>";
-    echo "<script>window.location.assign('edit.php');</script>";
+    echo "<script>window.location.assign('edit_accounts.php');</script>";
   }else{
     echo "<script>alert('Edit Account Failed!');</script>";
     echo "<script>window.location.assign('edit.php');</script>";

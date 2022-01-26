@@ -10,7 +10,7 @@ $username = $_SESSION['username'];
 $sql = "SELECT student_id FROM enrollment_system WHERE username = '$username'";
 $result = $conn->query($sql);
 $res = $result->fetch_array();
-$id = isset($res['student_id']);
+$id = $res['student_id'];
 $sql_statement = "SELECT * FROM grade_subject WHERE id_grades = '$id'";
 $fetch_res  = $conn->query($sql_statement);
 ?>
