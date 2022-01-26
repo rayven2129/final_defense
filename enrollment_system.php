@@ -17,7 +17,8 @@
 	</div>
 	<div>
 		<form action="insert_enrollment.php" method="POST">
-			<div class="container-fluid div-enrollment" id="form_1">
+			<div class="container-fluid div-enrollment-1" id="form_1">
+				<span class="span_page">Page 1 of 5</span>
 				<table class="table-design">
 				<tr>
 					<td>
@@ -33,6 +34,15 @@
 					<input type="hidden" name="student_type" id="student_type_value">
 
 					</td>
+				</tr>
+				<tr>
+					<td>
+						<p>Grade Level to Be Enroll: </p>
+					</td>
+					<td>
+						<input type="text" name="grade_level" class="form-control" oninput="uppercaseEvent(event)">
+					</td>
+				</tr>
 				</tr>
 				<tr>
 					<td>
@@ -75,7 +85,7 @@
 			</div>
 		<!---->
 		<div  class="container-fluid div-enrollment" id="form_2">
-
+			<span class="span_page">Page 2 of 5</span>
 			<table class="table-design">
 				<tr>
 					<td>
@@ -88,6 +98,14 @@
 							<option value="FEMALE">Female</option>
 						</select>
 						<input type="hidden" name="gender_type_result" id="gender_type_result">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p>Age </p>
+					</td>
+					<td>
+						<input type="text" name="age" class="form-control">
 					</td>
 				</tr>
 				<tr>
@@ -119,15 +137,47 @@
 			</table>
 		</div>
 		<!---->
-		<div  class="container-fluid div-enrollment" id="form_3">
-
+		<div  class="container-fluid div-enrollment-3" id="form_3">
+			<span class="span_page">Page 3 of 5</span>
 			<table class="table-design">
 				<tr>
 					<td>
-						<p>Address: </p>
+						<p>House Number/Street. : </p>
 					</td>
 					<td>
-						<input type="text" name="complete_address" class="form-control" oninput="uppercaseEvent(event)">
+						<input type="text" name="house_street" class="form-control" oninput="uppercaseEvent(event)">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p>Barangay: </p>
+					</td>
+					<td>
+						<input type="text" name="barangay" class="form-control" oninput="uppercaseEvent(event)">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p>Municpality: </p>
+					</td>
+					<td>
+						<input type="text" name="municipal" class="form-control" oninput="uppercaseEvent(event)">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p>Province: </p>
+					</td>
+					<td>
+						<input type="text" name="province" class="form-control" oninput="uppercaseEvent(event)">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p>Zip Code: </p>
+					</td>
+					<td>
+						<input type="text" name="zip_code" class="form-control" oninput="uppercaseEvent(event)">
 					</td>
 				</tr>
 				<tr>
@@ -160,6 +210,7 @@
 		</div>
 		<!---->
 		<div  class="container-fluid div-enrollment" id="form_4">
+			<span class="span_page">Page 4 of 5</span>
 			<table class="table-design">
 				<tr>
 					<td>
@@ -198,6 +249,7 @@
 		</div>
 		<!---->
 		<div  class="container-fluid div-enrollment" id="form_5">
+			<span class="span_page">Page 5 of 5</span>
 			<table class="table-design">
 				<tr>
 					<td>

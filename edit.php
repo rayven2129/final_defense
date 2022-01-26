@@ -31,7 +31,7 @@ $row = $fetch->fetch_array();
         </div>
         <ul class="nav navbar-nav">
           <li class="active"><a href="teacher_admin.php"><i class="fas fa-home"></i> Home</a></li>
-          <li><a href="grading_system.php"><i class="fas fa-database"></i> Grading System</a></li>
+          <li><a href="grading_system.php"><i class="fas fa-database"></i>Grading Inquiry/a></li>
           <li><a href="export_grade.php"><i class="fas fa-file-export"></i> Export Grade</a></li>
           <li><a href="edit_accounts.php"><i class="fas fa-edit"></i> Edit Accounts</a></li>
           <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>

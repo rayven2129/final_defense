@@ -10,3 +10,12 @@ th{
 	display: flex;
 	justify-content: center;
 }
+.student-navigation-grades{
+	display: flex;
+	justify-content: center;
+	height: auto;
+}
+.card-design{
+	margin-top: 12px;
+	padding-top: 5px;
+}

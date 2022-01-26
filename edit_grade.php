@@ -32,7 +32,7 @@ $data = $fetch->fetch_array();
         </div>
         <ul class="nav navbar-nav">
           <li class="active"><a href="teacher_admin.php"><i class="fas fa-home"></i> Home</a></li>
-          <li><a href="grading_system.php"><i class="fas fa-database"></i> Grading System</a></li>
+          <li><a href="grading_system.php"><i class="fas fa-database"></i>rading Inquiry</a></li>
           <li><a href="export_grade.php"><i class="fas fa-file-export"></i> Export Grade</a></li>
           <li><a href="edit_accounts.php"><i class="fas fa-edit"></i> Edit Accounts</a></li>
           <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
@@ -46,6 +46,19 @@ $data = $fetch->fetch_array();
         <tr>
           <th></th>
           <th><h3>Add Grades</h3></th>
+        </tr>
+         <tr>
+          <td>Grading Period</td>
+          <td>
+            <select id="grading_period" class="form-control btn btn-primary" onchange="grading_period_value()">
+              <option>Select Option</option>
+              <option value="first">First</option>
+              <option value="second">Second</option>
+              <option value="third">Third</option>
+              <option value="fourth">Fourth</option>
+            </select>
+            <input type="hidden" name="grading_period_result" id="grading_period_result">
+          </td>
         </tr>
         <tr>
           <td><p>Last Name: </p></td>
@@ -117,7 +130,7 @@ $data = $fetch->fetch_array();
     </div>
 </div>
 </div>
-<!--Form -->
+<!--Form 
 <div class="container">
   <div class="modal fade" id="subject" role="dialog">
     <div class="modal-dialog">
@@ -443,12 +456,14 @@ $data = $fetch->fetch_array();
       </div>
     </div> 
   </div>
+-->
 </div>
 </body>
 </html>
 <?php
 if (isset($_POST['submit'])) {
   $conn = new mysqli("localhost","root","", "enrollment_grading_system");
+  $grading_period_result = $_POST['grading_period_result'];
   $last_name = $_POST['last_name'];
   $first_name = $_POST['first_name'];
   $math = $_POST['math'];
@@ -462,7 +477,7 @@ if (isset($_POST['submit'])) {
   $arts = $_POST['arts'];
   $tle = $_POST['tle'];
   $esp = $_POST['esp'];
-  $statement = "UPDATE grade_subject SET last_name = '$last_name', first_name = '$first_name', math = '$math', science = '$science', ap = '$ap', filipino = '$filipino', english = '$english', pe = '$pe', health = '$health', music = '$music', arts = '$arts', tle = '$tle', esp = '$esp' WHERE id_subject = '$_GET[id]'";
+  $statement = "UPDATE grade_subject SET grading = '$grading_period_result', last_name = '$last_name', first_name = '$first_name', math = '$math', science = '$science', ap = '$ap', filipino = '$filipino', english = '$english', pe = '$pe', health = '$health', music = '$music', arts = '$arts', tle = '$tle', esp = '$esp' WHERE id_subject = '$_GET[id]'";
   if ($conn->query($statement) == TRUE) {
     echo "<script>alert('Edit data sucessfully!');</script>";
     echo "<script>window.location.assign('grading_system.php');</script>";

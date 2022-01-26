@@ -31,7 +31,7 @@ $fetch = $conn->query($sql);
         </div>
         <ul class="nav navbar-nav">
           <li class="active"><a href="teacher_admin.php"><i class="fas fa-home"></i> Home</a></li>
-          <li><a href="grading_system.php"><i class="fas fa-database"></i> Grading System</a></li>
+          <li><a href="grading_system.php"><i class="fas fa-database"></i>Grading Inquiry</a></li>
           <li><a href="export_grade.php"><i class="fas fa-file-export"></i> Export Grade</a></li>
           <li><a href="edit_accounts.php"><i class="fas fa-edit"></i> Edit Accounts</a></li>
           <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
@@ -41,13 +41,15 @@ $fetch = $conn->query($sql);
     <div class="container">
     <table class="table table-hover table-responsive table-bordered">
       <thead>
-        <tr class="danger">
+        <tr class="active">
           <th>Student ID</th>
+          <th>Grade Level</th>
           <th>Last Name</th>
           <th>First Name</th>
           <th>Middle Name</th>
           <th>Gender</th>
           <th>Date of Birth</th>
+          <th>Age</th>
           <th>Address</th>
           <th>Contact Number</th>
           <th>Guardian Name</th>
@@ -60,11 +62,13 @@ $fetch = $conn->query($sql);
       		while ($row = $fetch->fetch_array()) {
       		echo "<tr class='info'>";
       		echo "<td>".$row['student_id']."</td>";
+          echo "<td>".$row['grade_level']."</td>";
       		echo "<td>".$row['last_name']."</td>";
       		echo "<td>".$row['first_name']."</td>";
       		echo "<td>".$row['middle_name']."</td>";
       		echo "<td>".$row['gender']."</td>";
       		echo "<td>".$row['date_of_birth']."</td>";
+          echo "<td>".$row['age']."</td>";
       		echo "<td>".$row['address']."</td>";
       		echo "<td>".$row['contact_number']."</td>";
       		echo "<td>".$row['guardian_name']."</td>";

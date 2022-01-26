@@ -8,6 +8,27 @@
 	border-radius: 12px;
 
 }
+
+.div-enrollment-1{
+	display: flex;
+	justify-content: left;
+	border: solid black;
+	width: 550px;
+	height: 360px;
+	background-color: white;
+	border-radius: 12px;
+
+}
+
+.div-enrollment-3{
+	display: flex;
+	justify-content: left;
+	border: solid black;
+	width: 500px;
+	height: 450px;
+	background-color: white;
+	border-radius: 12px;
+}
 .table-design{
 	margin-top: 30px;
 	padding-top: 2px;
@@ -28,6 +49,7 @@ body{
 	width: 500px;
 	border: solid black;
 }
+
 #form_2, #form_3, #form_4, #form_5{
 	display: none;
 }
@@ -39,4 +61,20 @@ body{
 	height: 300px;
 	background-color: white;
 	border-radius: 12px;
+}
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:6px 20px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:6px 20px;word-break:normal;}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+.tg .tg-uzvj{border-color:inherit;font-weight:bold;text-align:center;vertical-align:middle}
+.tg .tg-7btt{border-color:inherit;font-weight:bold;text-align:center;vertical-align:top}
+.tg .tg-g7sd{border-color:inherit;font-weight:bold;text-align:left;vertical-align:middle}
+.tg .tg-fymr{border-color:inherit;font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+.span_page{
+	font-size: 11px;
+	float: left;
+
 }

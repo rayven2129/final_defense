@@ -41,7 +41,7 @@ $fetch = $conn->query($sql);
     <div class="container background-content">
     <table class="table table-hover table-responsive table-bordered">
       <thead>
-        <tr class="danger">
+        <tr class="active">
           <th>Student ID</th>
           <th>Last Name</th>
           <th>First Name</th>

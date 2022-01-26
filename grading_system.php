@@ -31,7 +31,7 @@ $fetch = $conn->query($sql);
         </div>
         <ul class="nav navbar-nav">
           <li class="active"><a href="teacher_admin.php"><i class="fas fa-home"></i> Home</a></li>
-          <li><a href="grading_system.php"><i class="fas fa-database"></i> Grading System</a></li>
+          <li><a href="grading_system.php"><i class="fas fa-database"></i>Grading Inquiry</a></li>
           <li><a href="export_grade.php"><i class="fas fa-file-export"></i> Export Grade</a></li>
           <li><a href="edit_accounts.php"><i class="fas fa-edit"></i> Edit Accounts</a></li>
           <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
@@ -47,6 +47,19 @@ $fetch = $conn->query($sql);
           <th><h3>Add Grades</h3></th>
         </tr>
         <tr>
+          <td>Grading Period</td>
+          <td>
+            <select id="grading_period" class="form-control btn btn-primary" onchange="grading_period_value()">
+              <option>Select Option</option>
+              <option value="first">First</option>
+              <option value="second">Second</option>
+              <option value="third">Third</option>
+              <option value="fourth">Fourth</option>
+            </select>
+            <input type="hidden" name="grading_period_result" id="grading_period_result">
+          </td>
+        </tr>
+        <tr>
           <td><p>Last Name: </p></td>
           <td><input type="text" name="last_name" class="form-control" oninput="uppercaseEvent(event)"></td>
         </tr>
@@ -55,19 +68,19 @@ $fetch = $conn->query($sql);
           <td><input type="text" name="first_name" class="form-control" oninput="uppercaseEvent(event)"></td>
         </tr>
         <tr>
-          <td><p>Math Final Grade: </p></td>
+          <td><p>Math Grade: </p></td>
           <td><input type="text" name="math" id="math" class="form-control" data-toggle="modal" data-target="#subject" onclick="mathfunction()"></td>
         </tr>
         <tr>
-          <td><p>Science Final Grade: </p></td>
+          <td><p>Science Grade: </p></td>
           <td><input type="text" name="science" id="science" class="form-control" data-toggle="modal" data-target="#subject" onclick="sciencefunction()"></td>
         </tr>
         <tr>
-          <td><p>AP Final Grade: </p></td>
+          <td><p>Araling Panlipunan Grade: </p></td>
           <td><input type="text" name="ap" id="ap" class="form-control" data-toggle="modal" data-target="#subject" onclick="apfunction()"></td>
         </tr>
         <tr>
-          <td><p>Filipino Final Grade: </p></td>
+          <td><p>Filipino Grade: </p></td>
           <td><input type="text" name="filipino" id="filipino" class="form-control" data-toggle="modal" data-target="#subject" onclick="filipinofunction()"></td>
         </tr>
         <tr>
@@ -75,7 +88,7 @@ $fetch = $conn->query($sql);
           <td><input type="text" name="english" id="english" class="form-control" data-toggle="modal" data-target="#subject" onclick="englishfunction()"></td>
         </tr>
         <tr>
-          <td><p>PE Final Grade: </p></td>
+          <td><p>Physical Education Grade: </p></td>
           <td><input type="text" name="pe" id="pe" class="form-control" data-toggle="modal" data-target="#subject" onclick="pefunction()"></td>
         </tr>
         <tr>
@@ -91,11 +104,11 @@ $fetch = $conn->query($sql);
           <td><input type="text" name="arts" id="arts" class="form-control" data-toggle="modal" data-target="#subject" onclick="artsfunction()"></td>
         </tr>
         <tr>
-          <td><p>TLE Final Grade: </p></td>
+          <td><p>Technology Livelihood and Education Grade: </p></td>
           <td><input type="text" name="tle" id="tle" class="form-control" data-toggle="modal" data-target="#subject" onclick="tlefunction()"></td>
         </tr>
          <tr>
-          <td><p>ESP Final Grade: </p></td>
+          <td><p>Edukasyon sa Pagpapakatao Grade: </p></td>
           <td><input type="text" name="esp" id="esp" class="form-control" data-toggle="modal" data-target="#subject" onclick="espfunction()"></td>
         </tr>
         <tr>
@@ -113,7 +126,8 @@ $fetch = $conn->query($sql);
     <table class="table table-hover table-responsive table-bordered">
       <thead>
         <tr class="danger">
-          <th>ID GRADES</th>
+          <th>STUDENT ID</th>
+          <th>GRADE QUARTER</th>
           <th>LAST NAME</th>
           <th>FIRST NAME</th>
           <th>MATH</th>
@@ -135,6 +149,7 @@ $fetch = $conn->query($sql);
       		while ($row = $fetch->fetch_array()) {
       		echo "<tr class='info'>";
       		echo "<td>".$row['id_grades']."</td>";
+          echo "<td>".$row['grading']."</td>";
       		echo "<td>".$row['last_name']."</td>";
       		echo "<td>".$row['first_name']."</td>";
       		echo "<td>".$row['math']."</td>";
@@ -156,7 +171,7 @@ $fetch = $conn->query($sql);
     </table>
 </div>
 </div>
-<!--Form -->
+<!--Form 
 <div class="container">
   <div class="modal fade" id="subject" role="dialog">
     <div class="modal-dialog">
@@ -482,12 +497,14 @@ $fetch = $conn->query($sql);
       </div>
     </div> 
   </div>
+-->
 </div>
 </body>
 </html>
 <?php
 if (isset($_POST['submit'])) {
   $conn = new mysqli("localhost","root","", "enrollment_grading_system");
+  $grading_period_result = $_POST['grading_period_result'];
   $last_name = $_POST['last_name'];
   $first_name = $_POST['first_name'];
   $math = $_POST['math'];
@@ -501,7 +518,7 @@ if (isset($_POST['submit'])) {
   $arts = $_POST['arts'];
   $tle = $_POST['tle'];
   $esp = $_POST['esp'];
-  $statement = "INSERT INTO grade_subject(id_grades,last_name,first_name,math,science,ap,filipino,english,pe,health,music,arts,tle,esp) VALUES ((SELECT student_id from enrollment_system WHERE last_name = '$last_name' and first_name = '$first_name'), '$last_name','$first_name','$math','$science', '$ap', '$filipino','$english','$pe','$health','$music','$arts', '$tle','$esp')";
+  $statement = "INSERT INTO grade_subject(id_grades,grading,last_name,first_name,math,science,ap,filipino,english,pe,health,music,arts,tle,esp) VALUES ((SELECT student_id from enrollment_system WHERE last_name = '$last_name' and first_name = '$first_name'), '$grading_period_result','$last_name','$first_name','$math','$science', '$ap', '$filipino','$english','$pe','$health','$music','$arts', '$tle','$esp')";
   if ($conn->query($statement) == TRUE) {
     echo "<script>alert('Add data sucessfully!');</script>";
     echo "<script>window.location.assign('grading_system.php');</script>";

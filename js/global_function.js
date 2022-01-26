@@ -294,3 +294,7 @@ function clear_data(){
    document.getElementById("tle").value = "";
    document.getElementById("esp").value = "";
 }
+function grading_period_value(){
+  var x = document.getElementById('grading_period').value;
+  document.getElementById('grading_period_result').value = x;
+}

@@ -13,6 +13,30 @@ $res = $result->fetch_array();
 $id = $res['student_id'];
 $sql_statement = "SELECT * FROM grade_subject WHERE id_grades = '$id'";
 $fetch_res  = $conn->query($sql_statement);
+$array_filipino = [];
+$array_english = [];
+$array_math = [];
+$array_science = [];
+$array_ap = [];
+$array_esp = [];
+$array_music = [];
+$array_arts = [];
+$array_pe = [];
+$array_health = [];
+$array_tle = [];
+while ($fetch = $fetch_res ->fetch_array()) {
+  $array_filipino[] = $fetch['filipino'];
+  $array_english[] = $fetch['english'];
+  $array_math[] = $fetch['math'];
+  $array_science[] = $fetch['science'];
+  $array_ap[] = $fetch['ap'];
+  $array_esp[] = $fetch['esp'];
+  $array_music[] = $fetch['music'];
+  $array_arts[] = $fetch['arts'];
+  $array_pe[] = $fetch['pe'];
+  $array_health[] = $fetch['health'];
+  $array_tle[] = $fetch['tle'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,49 +66,123 @@ $fetch_res  = $conn->query($sql_statement);
         </ul>
       </div>
     </nav>
-    <div class="container">
-    <table class="table table-hover table-responsive table-bordered">
-      <thead>
-        <tr class="danger">
-          <th>ID GRADES</th>
-          <th>LAST NAME</th>
-          <th>FIRST NAME</th>
-          <th>MATH</th>
-          <th>SCIENCE</th>
-          <th>AP</th>
-          <th>FILIPINO</th>
-          <th>ENGLISH</th>
-          <th>PE</th>
-          <th>HEALTH</th>
-          <th>MUSIC</th>
-          <th>ARTS</th>
-          <th>TLE</th>
-          <th>ESP</th>
-        </tr>
-      </thead>
-      <tbody>
-      	<?php
-      		while ($row = $fetch_res->fetch_array()) {
-      		echo "<tr class='info'>";
-      		echo "<td>".$row['id_grades']."</td>";
-      		echo "<td>".$row['last_name']."</td>";
-      		echo "<td>".$row['first_name']."</td>";
-      		echo "<td>".$row['math']."</td>";
-      		echo "<td>".$row['science']."</td>";
-      		echo "<td>".$row['ap']."</td>";
-      		echo "<td>".$row['filipino']."</td>";
-      		echo "<td>".$row['english']."</td>";
-      		echo "<td>".$row['pe']."</td>";
-      		echo "<td>".$row['health']."</td>";
-      		echo "<td>".$row['music']."</td>";
-          	echo "<td>".$row['arts']."</td>";
-          	echo "<td>".$row['tle']."</td>";
-          	echo "<td>".$row['esp']."</td>";
-      		echo "</tr>";
-      		}
-      	?>
-      </tbody>
+    <div class="container background-content student-navigation-grades">
+<table class="tg card-design">
+    <thead>
+      <tr>
+        <th class="tg-0lax" colspan="6" rowspan="2">Adviser: ___________________&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;School Year: _______<br>Year and Section:____________</th>
+      </tr>
+      <tr>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="tg-uzvj">LEARNING AREA</td>
+        <td class="tg-7btt" colspan="4">QUARTER</td>
+        <td class="tg-g7sd">Final Grade</td>
+      </tr>
+      <tr>
+        <td class="tg-fymr"></td>
+        <td class="tg-fymr">1</td>
+        <td class="tg-fymr">2</td>
+        <td class="tg-fymr">3</td>
+        <td class="tg-fymr">4</td>
+        <td class="tg-fymr"></td>
+      </tr>
+      <tr>
+        <td class="tg-fymr">Filipino</td>
+        <td class="tg-0pky"><?php if(isset($array_filipino[0])){echo $array_filipino[0];}?></td>
+        <td class="tg-0pky"><?php if(isset($array_filipino[1])){echo $array_filipino[1];}?></td>
+        <td class="tg-0pky"><?php if(isset($array_filipino[2])){echo $array_filipino[2];}?></td>
+        <td class="tg-0pky"><?php if(isset($array_filipino[3])){echo $array_filipino[3];}?></td>
+        <td class="tg-0pky"></td>
+      </tr>
+      <tr>
+        <td class="tg-fymr">English</td>
+        <td class="tg-0pky"><?php if (isset($array_english[0])){echo $array_english[0];}?></td>
+        <td class="tg-0pky"><?php if (isset($array_english[1])){echo $array_english[1];}?></td>
+        <td class="tg-0pky"><?php if (isset($array_english[2])){echo $array_english[2];}?></td>
+        <td class="tg-0pky"><?php if (isset($array_english[3])){echo $array_english[3];}?></td>
+        <td class="tg-0pky"></td>
+      </tr>
+      <tr>
+        <td class="tg-fymr">Mathematics</td>
+        <td class="tg-0pky"><?php if (isset($array_math[0])){echo $array_math[0];}?></td>
+        <td class="tg-0pky"><?php if (isset($array_math[1])){echo $array_math[1];}?></td>
+        <td class="tg-0pky"><?php if (isset($array_math[2])){echo $array_math[2];}?></td>
+        <td class="tg-0pky"><?php if (isset($array_math[3])){echo $array_math[3];}?></td>
+        <td class="tg-0pky"></td>
+      </tr>
+      <tr>
+        <td class="tg-fymr">Science</td>
+        <td class="tg-0pky"><?php if (isset($array_science[0])){echo $array_science[0];}?></td>
+        <td class="tg-0pky"><?php if (isset($array_science[1])){echo $array_science[1];}?></td>
+        <td class="tg-0pky"><?php if (isset($array_science[2])){echo $array_science[2];}?></td>
+        <td class="tg-0pky"><?php if (isset($array_science[3])){echo $array_science[3];}?></td>
+        <td class="tg-0pky"></td>
+      </tr>
+      <tr>
+        <td class="tg-fymr">Aralin Panlipunan</td>
+        <td class="tg-0pky"><?php if (isset($array_ap[0])){echo $array_ap[0];}?></td>
+        <td class="tg-0pky"><?php if (isset($array_ap[1])){echo $array_ap[1];}?></td>
+        <td class="tg-0pky"><?php if (isset($array_ap[2])){echo $array_ap[2];}?></td>
+        <td class="tg-0pky"><?php if (isset($array_ap[3])){echo $array_ap[3];}?></td>
+        <td class="tg-0pky"></td>
+      </tr>
+      <tr>
+        <td class="tg-fymr">Edukasyon sa Pagpapakatao</td>
+       <td class="tg-0pky"><?php if (isset($array_esp[0])){echo $array_esp[0];}?></td>
+        <td class="tg-0pky"><?php if (isset($array_esp[1])){echo $array_esp[1];}?></td>
+        <td class="tg-0pky"><?php if (isset($array_esp[2])){echo $array_esp[2];}?></td>
+        <td class="tg-0pky"><?php if (isset($array_esp[3])){echo $array_esp[3];}?></td>
+        <td class="tg-0pky"></td>
+      </tr>
+      <tr>
+        <td class="tg-fymr">Music</td>
+        <td class="tg-0pky"><?php if (isset($array_music[0])){echo $array_music[0];}?></td>
+        <td class="tg-0pky"><?php if (isset($array_music[1])){echo $array_music[1];}?></td>
+        <td class="tg-0pky"><?php if (isset($array_music[2])){echo $array_music[2];}?></td>
+        <td class="tg-0pky"><?php if (isset($array_music[3])){echo $array_music[3];}?></td>
+        <td class="tg-0pky"></td>
+      </tr>
+      <tr>
+        <td class="tg-fymr">Arts</td>
+        <td class="tg-0pky"><?php if (isset($array_arts[0])){echo $array_arts[0];}?></td>
+        <td class="tg-0pky"><?php if (isset($array_arts[1])){echo $array_arts[1];}?></td>
+        <td class="tg-0pky"><?php if (isset($array_arts[2])){echo $array_arts[2];}?></td>
+        <td class="tg-0pky"><?php if (isset($array_arts[3])){echo $array_arts[3];}?></td>
+        <td class="tg-0pky"></td>
+      </tr>
+      <tr>
+        <td class="tg-fymr">Physical Education</td>
+      <td class="tg-0pky"><?php if (isset($array_pe[0])){echo $array_pe[0];}?></td>
+        <td class="tg-0pky"><?php if (isset($array_pe[1])){echo $array_pe[1];}?></td>
+        <td class="tg-0pky"><?php if (isset($array_pe[2])){echo $array_pe[2];}?></td>
+        <td class="tg-0pky"><?php if (isset($array_pe[3])){echo $array_pe[3];}?></td>
+        <td class="tg-0pky"></td>
+      </tr>
+      <tr>
+        <td class="tg-fymr">Health</td>
+        <td class="tg-0pky"><?php if (isset($array_health[0])){echo $array_health[0];}?></td>
+        <td class="tg-0pky"><?php if (isset($array_health[1])){echo $array_health[1];}?></td>
+        <td class="tg-0pky"><?php if (isset($array_health[2])){echo $array_health[2];}?></td>
+        <td class="tg-0pky"><?php if (isset($array_health[3])){echo $array_health[3];}?></td>
+        <td class="tg-0pky"></td>
+      </tr>
+      <tr>
+        <td class="tg-fymr">Technology and Livelihood Education</td>
+        <td class="tg-0pky"><?php if (isset($array_tle[0])){echo $array_tle[0];}?></td>
+        <td class="tg-0pky"><?php if (isset($array_tle[1])){echo $array_tle[1];}?></td>
+        <td class="tg-0pky"><?php if (isset($array_tle[2])){echo $array_tle[2];}?></td>
+        <td class="tg-0pky"><?php if (isset($array_tle[3])){echo $array_tle[3];}?></td>
+        <td class="tg-0pky"></td>
+      </tr>
+    </tbody>
     </table>
+    </div>
+    <div class="container background-content">
+      <br>
+    </div>
 </div>
 </div>
 </body>
