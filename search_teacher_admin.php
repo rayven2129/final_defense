@@ -1,13 +1,13 @@
 <?php
 session_start();
 if ($_SESSION['username'] == '') {
-	echo "<script>alert('Please Login First');</script>";
-	echo "<script>window.location.assign('index.php');</script>";
+  echo "<script>alert('Please Login First');</script>";
+  echo "<script>window.location.assign('index.php');</script>";
 }
-$grade_level = $_SESSION['grade_level'];
 #$conn = new mysqli("localhost","id12720654_root", "DOS-sfP1Acyym#4(", "id12720654_enrollment_grading_system");
 $conn = new mysqli("localhost", "root", "", "enrollment_grading_system");
-$sql = "SELECT * FROM enrollment_system WHERE grade_level = '$grade_level'";
+$search_data = $_POST['search_data'];
+$sql = "SELECT * FROM enrollment_system WHERE lrn = '$search_data' OR last_name = '$search_data' OR first_name = '$search_data' OR username = '$search_data'";
 $fetch = $conn->query($sql);
 
 ?>
@@ -71,25 +71,25 @@ $fetch = $conn->query($sql);
         </tr>
       </thead>
       <tbody>
-      	<?php
-      		while ($row = $fetch->fetch_array()) {
-      		echo "<tr class='info'>";
-      		echo "<td><span class='link-design' data-toggle='modal' data-target='#add_grade' onclick='value_field()'>".$row['lrn']."</span><input type='hidden' id='lrn_value' value='".$row['lrn']."'></td>";
-          echo "<td>".$row['grade_level']."<input type='hidden' id='grade_level' value='".$row['grade_level']."'></td>";
-      		echo "<td>".$row['last_name']." <input type='hidden' id='last_name' value='".$row['last_name']."'></td>";
-      		echo "<td>".$row['first_name']."<input type='hidden' id='first_name' value='".$row['first_name']."'></td>";
-      		echo "<td>".$row['middle_name']."</td>";
-      		echo "<td>".$row['gender']."</td>";
-      		echo "<td>".$row['date_of_birth']."</td>";
+        <?php
+          while ($row = $fetch->fetch_array()) {
+          echo "<tr class='info'>";
+          echo "<td><span class='link-design' data-toggle='modal' data-target='#add_grade' onclick='value_field()'>".$row['lrn']."</span><input type='hidden' id='lrn_value' value='".$row['lrn']."'></td>";
+          echo "<td>".$row['grade_level']."</td>";
+          echo "<td>".$row['last_name']." <input type='hidden' id='last_name' value='".$row['last_name']."'</td>";
+          echo "<td>".$row['first_name']."<input type='hidden' id='first_name' value='".$row['first_name']."'</td>";
+          echo "<td>".$row['middle_name']."</td>";
+          echo "<td>".$row['gender']."</td>";
+          echo "<td>".$row['date_of_birth']."</td>";
           echo "<td>".$row['age']."</td>";
-      		echo "<td>".$row['address']."</td>";
-      		echo "<td>".$row['contact_number']."</td>";
-      		echo "<td>".$row['guardian_name']."</td>";
-      		echo "<td class='text-center'>".$row['guardian_contact_number']."</td>";
-      		echo "<td>".$row['username']."</td>";
-      		echo "</tr>";
-      		}
-      	?>
+          echo "<td>".$row['address']."</td>";
+          echo "<td>".$row['contact_number']."</td>";
+          echo "<td>".$row['guardian_name']."</td>";
+          echo "<td class='text-center'>".$row['guardian_contact_number']."</td>";
+          echo "<td>".$row['username']."</td>";
+          echo "</tr>";
+          }
+        ?>
       </tbody>
     </table>
 </div>
@@ -124,7 +124,7 @@ $fetch = $conn->query($sql);
           </td>
         </tr>
         <tr>
-          <td><p>Last Name: </p><input type="hidden" name="lrn" id="lrn_name"><input type="hidden" name="grade_level" id="grade_level_result"></td>
+          <td><p>Last Name: </p><input type="hidden" name="lrn" id="lrn_name"></td>
           <td><input type="text" class="form-control" id="last_name_value" oninput="uppercaseEvent(event)" readonly><input type="hidden" name="last_name" id="last_name_value_hidden"></td>
         </tr>
         <tr>
@@ -197,8 +197,6 @@ $fetch = $conn->query($sql);
     var x = document.getElementById('last_name').value;
     var y = document.getElementById('first_name').value;
     var lrn_var = document.getElementById('lrn_value').value;
-    var g_level = document.getElementById("grade_level").value;
-    document.getElementById("grade_level_result").value = g_level;
     document.getElementById('last_name_value').value = x;
     document.getElementById('first_name_value').value = y;
     document.getElementById('last_name_value_hidden').value = x;

@@ -1,7 +1,7 @@
 
 .background-content, .header-navigation{
 	background-color: white;
-	border-radius: 12px;
+	border-radius: 6px;
 }
 th{
 	font-size: 14px;
@@ -18,4 +18,17 @@ th{
 .card-design{
 	margin-top: 12px;
 	padding-top: 5px;
+}
+.link-design:hover{
+	color: blue;
+	text-decoration: underline;
+	font-size: 18px;
+	font-weight: bold;
+	cursor: default;
+}
+.search_content{
+	margin-left: 15px;
+}
+.search_content_parent{
+	margin-left: 0px;
 }

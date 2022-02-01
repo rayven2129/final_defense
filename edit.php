@@ -4,6 +4,7 @@ if ($_SESSION['username'] == null) {
   echo "<script>alert('Please Login First');</script>";
   echo "<script>window.location.assign('index.php');</script>";
 }
+#$conn = new mysqli("localhost","id12720654_root", "DOS-sfP1Acyym#4(", "id12720654_enrollment_grading_system");
 $conn = new mysqli("localhost", "root", "", "enrollment_grading_system");
 $sql = "SELECT * FROM enrollment_system where student_id ='$_GET[id]'";
 $fetch = $conn->query($sql);
@@ -31,9 +32,9 @@ $row = $fetch->fetch_array();
         </div>
         <ul class="nav navbar-nav">
           <li class="active"><a href="teacher_admin.php"><i class="fas fa-home"></i> Home</a></li>
-          <li><a href="grading_system.php"><i class="fas fa-database"></i>Grading Inquiry/a></li>
+          <li><a href="grading_system.php"><i class="fas fa-database"></i>Grading Inquiry</a></li>
           <li><a href="export_grade.php"><i class="fas fa-file-export"></i> Export Grade</a></li>
-          <li><a href="edit_accounts.php"><i class="fas fa-edit"></i> Edit Accounts</a></li>
+          <li><a href="edit_accounts.php"><i class="fas fa-edit"></i> Edit Basic Information</a></li>
           <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
         </ul>
       </div>
@@ -59,7 +60,7 @@ $row = $fetch->fetch_array();
         </tr>
         <tr>
           <td><h4>Date of Birth:</h4></td>
-          <td><input type="text" name="date_of_birth" class="form-control"<?php echo "value = '".$row['date_of_birth']."'";      ?>></td>
+          <td><input type="text" name="date_of_birth" id="date_of_birth_value" onclick="text_to_date()" class="form-control"<?php echo "value = '".$row['date_of_birth']."'";      ?>></td>
         </tr>
         <tr>
           <td><h4>Address:</h4></td>
@@ -78,10 +79,6 @@ $row = $fetch->fetch_array();
           <td><input type="text" name="guardian_contact_number" class="form-control"<?php echo "value = '".$row['guardian_contact_number']."'";      ?>></td>
         </tr>
         <tr>
-          <td><h4>Username:</h4></td>
-          <td><input type="text" name="username" class="form-control"<?php echo "value = '".$row['username']."'";      ?>></td>
-        </tr>
-        <tr>
           <td></td>
           <td><button type="submit" name="submit" class="form-control btn btn-success">Edit Data</button></td>
         </tr>
@@ -96,6 +93,11 @@ $row = $fetch->fetch_array();
     </div>
 </div>
 </body>
+<script type="text/javascript">
+  function text_to_date(){
+    document.getElementById("date_of_birth_value").type = "date";
+  }
+</script>
 </html>
 <?php
 if (isset($_POST['submit'])) {
@@ -108,9 +110,8 @@ $complete_address = $_POST['address'];
 $contact_number = $_POST['contact_number'];
 $guardian_name = $_POST['guardian_name'];
 $guardian_contact_number = $_POST['guardian_contact_number'];
-$username = $_POST['username'];
 
-  $sql_edit = "UPDATE enrollment_system set last_name = '$last_name', first_name = '$first_name ', middle_name = '$middle_name', gender = '$gender_type_result', date_of_birth = '$date_of_birth ', address = '$complete_address ', contact_number = '$contact_number', guardian_name = '$guardian_name', guardian_contact_number = '$guardian_contact_number ', username = '$username 'where student_id ='$_GET[id]'";
+  $sql_edit = "UPDATE enrollment_system set last_name = '$last_name', first_name = '$first_name ', middle_name = '$middle_name', gender = '$gender_type_result', date_of_birth = '$date_of_birth ', address = '$complete_address ', contact_number = '$contact_number', guardian_name = '$guardian_name', guardian_contact_number = '$guardian_contact_number ' where student_id ='$_GET[id]'";
   if ($conn->query($sql_edit)) {
     echo "<script>alert('Edit Account Success!');</script>";
     echo "<script>window.location.assign('edit_accounts.php');</script>";

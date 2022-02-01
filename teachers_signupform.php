@@ -2,7 +2,7 @@
 <html >
 <head>
   <meta charset="UTF-8">
-  <title>Enrollment Form</title>
+  <title>Teachers Signup Form</title>
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
   <link rel="stylesheet" href="css/form.css">
@@ -12,7 +12,7 @@
 </head>
 <body>
   <!-- multistep form -->
-<form id="msform" action="insert_enrollment.php" method="POST">
+<form id="msform" action="teachers_admin_insert_account.php" method="POST">
   <!-- progressbar -->
   <ul id="progressbar">
     <li class="active">Personal Information</li>
@@ -23,37 +23,20 @@
   <!-- fieldsets -->
   <fieldset>
     <h2 class="fs-title">Personal Information</h2>
-    <span class="fs-subtitle">Student Type</span><select id="student_type_value_source" onchange="student_type_function()">
-            <option>Please Select Option</option>
-            <option value="OLD">Old</option>
-            <option value="NEW">New</option>
-            <option value="TRANSFEREE">Transferee</option>
-    </select>
-    <input type="hidden" name="student_type" id="student_type_value">
-    
-    <input type="text" name="last_name" placeholder="Last Name" oninput="uppercaseEvent(event)" />
-    <input type="text" name="first_name" placeholder="First Name" oninput="uppercaseEvent(event)" />
-    <input type="text" name="middle_name" placeholder="Middle Name" oninput="uppercaseEvent(event)" />
+    <input type="text" name="last_name" id="last_name" placeholder="Last Name" oninput="uppercaseEvent(event)" />
+    <input type="text" name="first_name" id="first_name" placeholder="First Name" oninput="uppercaseEvent(event)" />
+    <input type="text" name="middle_name" id="middle_name" placeholder="Middle Name" oninput="uppercaseEvent(event)" />
     <span class="fs-subtitle">    Gender: </span><select id="gender_type_source" onchange="gender_type_function()">
               <option>Please Select Option</option>
               <option value="MALE">Male</option>
               <option value="FEMALE">Female</option>
     </select>
     <input type="hidden" name="gender_type_result" id="gender_type_result" oninput="uppercaseEvent(event)">
-    <input type="text" name="age" placeholder="Age" />
-    <label for="date_of_birth" class="fs-subtitle">Date Of Birth</label>
-    <input type="date" name="date_of_birth" id="date_of_birth" placeholder="Date Of Birth"/>
-    <input type="text" name="place_of_birth" placeholder="Place of Birth" oninput="uppercaseEvent(event)">
     <input type="button" name="previous" class="cancel action-button" value="Cancel" />
     <input type="button" name="next" class="next action-button" value="Next" />
   </fieldset>
    <fieldset>
     <h2 class="fs-title">Additional Personal Information</h2>
-    <input type="text" name="house_street" placeholder="House Number/Street Number" oninput="uppercaseEvent(event)" />
-    <input type="text" name="barangay" placeholder="Barangay" oninput="uppercaseEvent(event)" />
-    <input type="text" name="municipal" placeholder="Municipal/City" oninput="uppercaseEvent(event)" />
-    <input type="text" name="province" placeholder="Province" oninput="uppercaseEvent(event)" />
-    <input type="text" name="zip_code" placeholder="Zip Code" />
     <input type="text" name="contact_number" placeholder="Contact Number">
     <input type="email" name="email_address" placeholder="Email Address">
     <input type="button" name="previous" class="previous action-button" value="Previous" />
@@ -62,11 +45,8 @@
   <fieldset>
     <h2 class="fs-title">School Information</h2>
     <h3 class="fs-subtitle">Your information on school</h3>
-    <input type="text" name="lrn" placeholder="Learners References Number" />
-    <input type="text" name="grade_level" placeholder="Grade Level To be Enrolled" />
-    <input type="text" name="guardian_name" placeholder="Guardian's Name" oninput="uppercaseEvent(event)" />
-    <input type="text" name="guardian_contact_number" placeholder="Guardian's Contact  Number" oninput="uppercaseEvent(event)" />
-    <input type="text" name="guardian_relation_to_student" placeholder="Guardian's Relation to Student" oninput="uppercaseEvent(event)" />
+    <input type="text" name="grade_level" id="grade_level_value" placeholder="Grade Level to be Advised" />
+    <input type="text" name="section" id="section_value"  readonly />
     <input type="button" name="previous" class="previous action-button" value="Previous" />
     <input type="button" name="next" class="next action-button" value="Next" />
   </fieldset>
@@ -107,7 +87,14 @@
     document.getElementById("gender_type_result").value = x;
   }
   document.querySelector(".cancel").onclick = function(){
-  	window.location.assign("index.php");
+  	window.location.assign("teachers_index.php");
+  }
+  document.querySelector("#grade_level_value").onkeyup = function(){
+    var lname = document.getElementById("last_name").value;
+    var fname = document.getElementById("first_name").value;
+    var mname = document.getElementById("middle_name").value;
+    var grade_level = document.getElementById("grade_level_value").value;
+    document.getElementById("section_value").value = "G"+grade_level+" - "+fname.charAt(0)+mname.charAt(0)+lname.charAt(0)
   }
 </script>
 </html>

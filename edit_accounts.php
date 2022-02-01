@@ -4,15 +4,17 @@ if ($_SESSION['username'] == null) {
   echo "<script>alert('Please Login First');</script>";
   echo "<script>window.location.assign('index.php');</script>";
 }
+$grade_level = $_SESSION['grade_level'];
+#$conn = new mysqli("localhost","id12720654_root", "DOS-sfP1Acyym#4(", "id12720654_enrollment_grading_system");
 $conn = new mysqli("localhost", "root", "", "enrollment_grading_system");
-$sql = "SELECT * FROM enrollment_system";
+$sql = "SELECT * FROM enrollment_system WHERE grade_level = '$grade_level'";
 $fetch = $conn->query($sql);
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Teacher Admin Page</title>
+  <title>Edit Basic Information</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -30,19 +32,19 @@ $fetch = $conn->query($sql);
           <a class="navbar-brand" href="teacher_admin.php">Teachers Admin Page</a>
         </div>
         <ul class="nav navbar-nav">
-          <li class="active"><a href="teacher_admin.php"><i class="fas fa-home"></i> Home</a></li>
+          <li><a href="teacher_admin.php"><i class="fas fa-home"></i> Home</a></li>
           <li><a href="grading_system.php"><i class="fas fa-database"></i> Grading System</a></li>
           <li><a href="export_grade.php"><i class="fas fa-file-export"></i> Export Grade</a></li>
-          <li><a href="edit_accounts.php"><i class="fas fa-edit"></i> Edit Accounts</a></li>
+          <li><a href="edit_accounts.php"><i class="fas fa-edit"></i> Edit Basic Information</a></li>
           <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
         </ul>
       </div>
     </nav>
-    <div class="container background-content">
+    <div class="container">
     <table class="table table-hover table-responsive table-bordered">
       <thead>
         <tr class="active">
-          <th>Student ID</th>
+          <th>Learners Reference Number</th>
           <th>Last Name</th>
           <th>First Name</th>
           <th>Middle Name</th>
@@ -52,7 +54,6 @@ $fetch = $conn->query($sql);
           <th>Contact Number</th>
           <th>Guardian Name</th>
           <th>Guardian Contact Number</th>
-          <th>Username</th>
           <th>Edit</th>
           <th>Delete</th>
         </tr>
@@ -61,7 +62,7 @@ $fetch = $conn->query($sql);
       	<?php
       		while ($row = $fetch->fetch_array()) {
       		echo "<tr class='info'>";
-      		echo "<td>".$row['student_id']."</td>";
+      		echo "<td>".$row['lrn']."</td>";
       		echo "<td>".$row['last_name']."</td>";
       		echo "<td>".$row['first_name']."</td>";
       		echo "<td>".$row['middle_name']."</td>";
@@ -71,7 +72,6 @@ $fetch = $conn->query($sql);
       		echo "<td>".$row['contact_number']."</td>";
       		echo "<td>".$row['guardian_name']."</td>";
       		echo "<td class='text-center'>".$row['guardian_contact_number']."</td>";
-      		echo "<td>".$row['username']."</td>";
       		echo "<td><a href='edit.php?id=".$row['student_id']."' target='_blank'>Edit</td>";
       		echo "<td><a href='delete.php?id=".$row['student_id']."'>Delete</td>";
       		echo "</tr>";

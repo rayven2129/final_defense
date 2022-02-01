@@ -14,7 +14,7 @@
 	justify-content: left;
 	border: solid black;
 	width: 550px;
-	height: 360px;
+	height: 400px;
 	background-color: white;
 	border-radius: 12px;
 
@@ -67,12 +67,14 @@ body{
   overflow:hidden;padding:6px 20px;word-break:normal;}
 .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
   font-weight:normal;overflow:hidden;padding:6px 20px;word-break:normal;}
-.tg .tg-0lax{text-align:left;vertical-align:top}
+.tg .tg-zv4m{border-color:#ffffff; border-right: #000000 ;text-align:left;vertical-align:top}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
 .tg .tg-uzvj{border-color:inherit;font-weight:bold;text-align:center;vertical-align:middle}
 .tg .tg-7btt{border-color:inherit;font-weight:bold;text-align:center;vertical-align:top}
 .tg .tg-g7sd{border-color:inherit;font-weight:bold;text-align:left;vertical-align:middle}
 .tg .tg-fymr{border-color:inherit;font-weight:bold;text-align:left;vertical-align:top}
-.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+.tg .tg-73oq{border-color:#000000; text-align:left;vertical-align:top}
 .span_page{
 	font-size: 11px;
 	float: left;

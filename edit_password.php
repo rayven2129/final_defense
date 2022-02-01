@@ -7,6 +7,7 @@ $username = $_SESSION['username'];
 		echo "<script>alert('Please Login First');</script>";
 		echo "<script>window.location.assign('index.php');</script>";
 	}
+#$conn = new mysqli("localhost","id12720654_root", "DOS-sfP1Acyym#4(", "id12720654_enrollment_grading_system");
 $sql = "SELECT * FROM enrollment_system WHERE username = '$username'";
 $result = $conn->query($sql);
 $fetch_id = $result->fetch_array();
@@ -44,9 +45,13 @@ $stud_id = isset($fetch_id['student_id']);
     <div class="container background-content content-navigation-grades">
       <form action="" method="POST">
     <table>
+      <tr>
+       <td><h4>New Username: </h4></td>
+       <td><input type="text" name="new_username" class="form-control"></td>
+     </tr>
      <tr>
        <td><h4>Old Password: </h4></td>
-       <td><input type="text" name="old_password" class="form-control"></td>
+       <td><input type="password" name="old_password" class="form-control"></td>
      </tr>
      <tr>
        <td><h4>New Password: </h4></td>
@@ -86,13 +91,14 @@ $stud_id = isset($fetch_id['student_id']);
 </html>
 <?php
   if (isset($_POST['submit'])) {
+      $new_username = $_POST['new_username'];
       $old_password = $_POST['old_password'];
       $new_password = $_POST['new_password'];
         if ($old_password != $fetch_id['password_user']) {
           echo "<script>alert('Incorrect old password');</script>";
           echo $stud_id;
         }else{
-          $change_password = "UPDATE enrollment_system SET password_user = '$new_password' WHERE student_id = '$stud_id'";
+          $change_password = "UPDATE enrollment_system SET username = '$new_username', password_user = '$new_password'  WHERE student_id = '$stud_id'";
             if ($conn->query($change_password) == TRUE) {
                 echo "<script>alert('Change password Successfully!!');</script>";
                 echo "<script>window.location.assign('logout.php');</script>";

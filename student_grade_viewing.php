@@ -7,10 +7,12 @@ $username = $_SESSION['username'];
 		echo "<script>alert('Please Login First');</script>";
 		echo "<script>window.location.assign('index.php');</script>";
 	}
-$sql = "SELECT student_id FROM enrollment_system WHERE username = '$username'";
+#$conn = new mysqli("localhost","id12720654_root", "DOS-sfP1Acyym#4(", "id12720654_enrollment_grading_system");
+$sql = "SELECT student_id, grade_level FROM enrollment_system WHERE username = '$username'";
 $result = $conn->query($sql);
 $res = $result->fetch_array();
 $id = $res['student_id'];
+$grade_level = $res['grade_level'];
 $sql_statement = "SELECT * FROM grade_subject WHERE id_grades = '$id'";
 $fetch_res  = $conn->query($sql_statement);
 $array_filipino = [];
@@ -24,6 +26,7 @@ $array_arts = [];
 $array_pe = [];
 $array_health = [];
 $array_tle = [];
+$array_mapeh = [];
 while ($fetch = $fetch_res ->fetch_array()) {
   $array_filipino[] = $fetch['filipino'];
   $array_english[] = $fetch['english'];
@@ -36,6 +39,7 @@ while ($fetch = $fetch_res ->fetch_array()) {
   $array_pe[] = $fetch['pe'];
   $array_health[] = $fetch['health'];
   $array_tle[] = $fetch['tle'];
+  $array_mapeh[] = intval(($fetch['music']+$fetch['arts']+$fetch['pe']+$fetch['health'])/4);
 }
 ?>
 <!DOCTYPE html>
@@ -66,11 +70,11 @@ while ($fetch = $fetch_res ->fetch_array()) {
         </ul>
       </div>
     </nav>
-    <div class="container background-content student-navigation-grades">
-<table class="tg card-design">
+    <div class="container  student-navigation-grades">
+<table class="tg card-design background-content">
     <thead>
       <tr>
-        <th class="tg-0lax" colspan="6" rowspan="2">Adviser: ___________________&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;School Year: _______<br>Year and Section:____________</th>
+        <th class="tg-0lax" colspan="6" rowspan="2">Adviser: ___________________&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;School Year: <span style="text-decoration: underline;">G<?php  echo $grade_level;?>-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><br>Year and Section:____________</th>
       </tr>
       <tr>
       </tr>
@@ -138,6 +142,22 @@ while ($fetch = $fetch_res ->fetch_array()) {
         <td class="tg-0pky"></td>
       </tr>
       <tr>
+        <td class="tg-fymr">Technology and Livelihood Education</td>
+        <td class="tg-0pky"><?php if (isset($array_tle[0])){echo $array_tle[0];}?></td>
+        <td class="tg-0pky"><?php if (isset($array_tle[1])){echo $array_tle[1];}?></td>
+        <td class="tg-0pky"><?php if (isset($array_tle[2])){echo $array_tle[2];}?></td>
+        <td class="tg-0pky"><?php if (isset($array_tle[3])){echo $array_tle[3];}?></td>
+        <td class="tg-0pky"></td>
+      </tr>
+      <tr>
+        <td class="tg-fymr">MAPEH</td>
+        <td class="tg-0pky"><?php if (isset($array_mapeh[0])){echo $array_mapeh[0];}?></td>
+        <td class="tg-0pky"><?php if (isset($array_mapeh[1])){echo $array_mapeh[1];}?></td>
+        <td class="tg-0pky"><?php if (isset($array_mapeh[2])){echo $array_mapeh[2];}?></td>
+        <td class="tg-0pky"><?php if (isset($array_mapeh[3])){echo $array_mapeh[3];}?></td>
+        <td class="tg-0pky"></td>
+      </tr>
+      <tr>
         <td class="tg-fymr">Music</td>
         <td class="tg-0pky"><?php if (isset($array_music[0])){echo $array_music[0];}?></td>
         <td class="tg-0pky"><?php if (isset($array_music[1])){echo $array_music[1];}?></td>
@@ -170,18 +190,28 @@ while ($fetch = $fetch_res ->fetch_array()) {
         <td class="tg-0pky"></td>
       </tr>
       <tr>
-        <td class="tg-fymr">Technology and Livelihood Education</td>
-        <td class="tg-0pky"><?php if (isset($array_tle[0])){echo $array_tle[0];}?></td>
-        <td class="tg-0pky"><?php if (isset($array_tle[1])){echo $array_tle[1];}?></td>
-        <td class="tg-0pky"><?php if (isset($array_tle[2])){echo $array_tle[2];}?></td>
-        <td class="tg-0pky"><?php if (isset($array_tle[3])){echo $array_tle[3];}?></td>
+        <td class="tg-fymr" style="height: 30px;"></td>
         <td class="tg-0pky"></td>
+        <td class="tg-0pky"></td>
+        <td class="tg-0pky"></td>
+        <td class="tg-0pky"></td>
+        <td class="tg-0pky"></td>
+      </tr>
+      <tr>
+        <td class="tg-fymr" style="height: 30px;"></td>
+        <td class="tg-0pky"></td>
+        <td class="tg-0pky"></td>
+        <td class="tg-0pky"></td>
+        <td class="tg-0pky"></td>
+        <td class="tg-0pky"></td>
+      </tr>
+      <tr>
+        <td class="tg-zv4m"></td>
+        <td class="tg-73oq" colspan="4"><span style="font-weight:bold">GENERAL AVERAGE</span></td>
+        <td class="tg-0lax"></td>
       </tr>
     </tbody>
     </table>
-    </div>
-    <div class="container background-content">
-      <br>
     </div>
 </div>
 </div>

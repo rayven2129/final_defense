@@ -4,6 +4,7 @@ if ($_SESSION['username'] == null) {
   echo "<script>alert('Please Login First');</script>";
   echo "<script>window.location.assign('index.php');</script>";
 }
+#$conn = new mysqli("localhost","id12720654_root", "DOS-sfP1Acyym#4(", "id12720654_enrollment_grading_system");
 $conn = new mysqli("localhost", "root", "", "enrollment_grading_system");
 $sql = "SELECT * FROM grade_subject WHERE id_subject = '$_GET[id]'";
 $fetch = $conn->query($sql);
@@ -52,10 +53,10 @@ $data = $fetch->fetch_array();
           <td>
             <select id="grading_period" class="form-control btn btn-primary" onchange="grading_period_value()">
               <option>Select Option</option>
-              <option value="first">First</option>
-              <option value="second">Second</option>
-              <option value="third">Third</option>
-              <option value="fourth">Fourth</option>
+              <option value="FIRST">First</option>
+              <option value="SECOND">Second</option>
+              <option value="THIRD">Third</option>
+              <option value="FOURTH">Fourth</option>
             </select>
             <input type="hidden" name="grading_period_result" id="grading_period_result">
           </td>
@@ -69,47 +70,47 @@ $data = $fetch->fetch_array();
           <td><input type="text" name="first_name" id="first_name" class="form-control" <?php echo "value='".$data['first_name']."'";?> oninput="uppercaseEvent(event)"></td>
         </tr>
         <tr>
-          <td><p>Math Final Grade: </p></td>
+          <td><p>Math Grade: </p></td>
           <td><input type="text" name="math" id="math" class="form-control" <?php echo "value='".$data['math']."'";?> data-toggle="modal" data-target="#subject" onclick="mathfunction()"></td>
         </tr>
         <tr>
-          <td><p>Science Final Grade: </p></td>
+          <td><p>Science Grade: </p></td>
           <td><input type="text" name="science" id="science" class="form-control" <?php echo "value='".$data['science']."'";?> data-toggle="modal" data-target="#subject" onclick="sciencefunction()"></td>
         </tr>
         <tr>
-          <td><p>AP Final Grade: </p></td>
+          <td><p>Aralin Panlipunan Grade: </p></td>
           <td><input type="text" name="ap" id="ap" class="form-control" <?php echo "value='".$data['ap']."'";?> data-toggle="modal" data-target="#subject" onclick="apfunction()"></td>
         </tr>
         <tr>
-          <td><p>Filipino Final Grade: </p></td>
+          <td><p>Filipino Grade: </p></td>
           <td><input type="text" name="filipino" id="filipino" class="form-control" <?php echo "value='".$data['filipino']."'";?> data-toggle="modal" data-target="#subject" onclick="filipinofunction()"></td>
         </tr>
         <tr>
-          <td><p>English Final Grade: </p></td>
+          <td><p>English  Grade: </p></td>
           <td><input type="text" name="english" id="english" class="form-control" <?php echo "value='".$data['english']."'";?> data-toggle="modal" data-target="#subject" onclick="englishfunction()"></td>
         </tr>
         <tr>
-          <td><p>PE Final Grade: </p></td>
+          <td><p>Physical Education Grade: </p></td>
           <td><input type="text" name="pe" id="pe" class="form-control" <?php echo "value='".$data['pe']."'";?> data-toggle="modal" data-target="#subject" onclick="pefunction()"></td>
         </tr>
         <tr>
-          <td><p>Health Final Grade: </p></td>
+          <td><p>Health Grade: </p></td>
           <td><input type="text" name="health" id="health" class="form-control" <?php echo "value='".$data['health']."'";?> data-toggle="modal" data-target="#subject" onclick="healthfunction()"></td>
         </tr>
         <tr>
-          <td><p>Music Final Grade: </p></td>
+          <td><p>Music  Grade: </p></td>
           <td><input type="text" name="music" id="music" class="form-control" <?php echo "value='".$data['music']."'";?> data-toggle="modal" data-target="#subject" onclick="musicfunction()"></td>
         </tr>
         <tr>
-          <td><p>Arts Final Grade: </p></td>
+          <td><p>Arts  Grade: </p></td>
           <td><input type="text" name="arts" id="arts" class="form-control" <?php echo "value='".$data['arts']."'";?> data-toggle="modal" data-target="#subject" onclick="artsfunction()"></td>
         </tr>
         <tr>
-          <td><p>TLE Final Grade: </p></td>
+          <td><p>TLE Grade: </p></td>
           <td><input type="text" name="tle" id="tle" class="form-control" <?php echo "value='".$data['tle']."'";?> data-toggle="modal" data-target="#subject" onclick="tlefunction()"></td>
         </tr>
          <tr>
-          <td><p>ESP Final Grade: </p></td>
+          <td><p>ESP Grade: </p></td>
           <td><input type="text" name="esp" id="esp" class="form-control" <?php echo "value='".$data['esp']."'";?> data-toggle="modal" data-target="#subject" onclick="espfunction()"></td>
         </tr>
         <tr>
@@ -462,6 +463,7 @@ $data = $fetch->fetch_array();
 </html>
 <?php
 if (isset($_POST['submit'])) {
+  #$conn = new mysqli("localhost","id12720654_root", "DOS-sfP1Acyym#4(", "id12720654_enrollment_grading_system");
   $conn = new mysqli("localhost","root","", "enrollment_grading_system");
   $grading_period_result = $_POST['grading_period_result'];
   $last_name = $_POST['last_name'];

@@ -1,0 +1,35 @@
+html{
+	background : linear-gradient(rgba(255, 0, 0, 0.6), rgba(128, 0, 0, 0.6));
+}
+body{
+	background: rgba(240,102,102,255);
+}
+
+.title-header{
+	font-size: 25px;
+}
+.div-header{
+	margin-top: 200px;
+	background : white;
+	border-radius: 12px;
+	box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+	width: 500px;
+	border: 0 none;
+}
+.login-content{
+	display: flex;
+	justify-content: center;
+	border: 0 none;
+	box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+	width: 500px;
+	height: 300px;
+	background : white;
+	border-radius: 12px;
+}
+.table-design{
+	margin-top: 30px;
+	padding-top: 2px;
+}
+fieldset button{
+	
+}
