@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Enrollment Form</title>
-  
+  <link rel="icon" href="images/favicon.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
   <link rel="stylesheet" href="css/form.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
@@ -73,8 +73,8 @@
   <fieldset>
     <h2 class="fs-title">Personal Details</h2>
     <h3 class="fs-subtitle">We will never know it</h3>
-    <input type="text" name="username" placeholder="Username" />
-    <input type="password" name="password" id="password_login" placeholder="Password" />
+    <input type="text" name="username" placeholder="Username" required />
+    <input type="password" name="password" id="password_login" placeholder="Password" required />
     <table>
       <tr>
         <td><span class="fs-subtitle">Show Password</span></td>

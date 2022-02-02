@@ -1,7 +1,9 @@
 
 .background-content, .header-navigation{
 	background-color: white;
-	border-radius: 6px;
+}
+.background-content{
+	box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);;
 }
 th{
 	font-size: 14px;
@@ -31,4 +33,10 @@ th{
 }
 .search_content_parent{
 	margin-left: 0px;
+}
+.table-background{
+	background: #ede9e8;
+}
+.table-background-content{
+	background: #ffffff;
 }

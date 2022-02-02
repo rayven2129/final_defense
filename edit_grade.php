@@ -4,8 +4,7 @@ if ($_SESSION['username'] == null) {
   echo "<script>alert('Please Login First');</script>";
   echo "<script>window.location.assign('index.php');</script>";
 }
-#$conn = new mysqli("localhost","id12720654_root", "DOS-sfP1Acyym#4(", "id12720654_enrollment_grading_system");
-$conn = new mysqli("localhost", "root", "", "enrollment_grading_system");
+include("connect.php");
 $sql = "SELECT * FROM grade_subject WHERE id_subject = '$_GET[id]'";
 $fetch = $conn->query($sql);
 $data = $fetch->fetch_array();
@@ -16,6 +15,7 @@ $data = $fetch->fetch_array();
   <title>Teacher Admin Page</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="images/favicon.png">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -36,7 +36,7 @@ $data = $fetch->fetch_array();
           <li><a href="grading_system.php"><i class="fas fa-database"></i>rading Inquiry</a></li>
           <li><a href="export_grade.php"><i class="fas fa-file-export"></i> Export Grade</a></li>
           <li><a href="edit_accounts.php"><i class="fas fa-edit"></i> Edit Accounts</a></li>
-          <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+          <li><a href="tlogout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
         </ul>
       </div>
     </nav>

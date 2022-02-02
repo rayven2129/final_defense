@@ -5,8 +5,7 @@ if ($_SESSION['username'] == '') {
 	echo "<script>window.location.assign('index.php');</script>";
 }
 $grade_level = $_SESSION['grade_level'];
-#$conn = new mysqli("localhost","id12720654_root", "DOS-sfP1Acyym#4(", "id12720654_enrollment_grading_system");
-$conn = new mysqli("localhost", "root", "", "enrollment_grading_system");
+include("connect.php");;
 $sql = "SELECT * FROM enrollment_system WHERE grade_level = '$grade_level'";
 $fetch = $conn->query($sql);
 
@@ -17,6 +16,7 @@ $fetch = $conn->query($sql);
   <title>Teacher Admin Page</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="images/favicon.png">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -34,10 +34,11 @@ $fetch = $conn->query($sql);
         </div>
         <ul class="nav navbar-nav">
           <li><a href="teacher_admin.php"><i class="fas fa-home"></i> Home</a></li>
-          <li><a href="grading_system.php"><i class="fas fa-database"></i>Grading Inquiry</a></li>
+          <li><a href="grading_system.php"><i class="fas fa-database"></i> Grading Inquiry</a></li>
           <li><a href="export_grade.php"><i class="fas fa-file-export"></i> Export Grade</a></li>
           <li><a href="edit_accounts.php"><i class="fas fa-edit"></i> Edit Basic Information</a></li>
-          <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+          <li><a href="edit_teacher_account.php"><i class="fas fa-key"></i> Edit Teacher Account</a></li>
+          <li><a href="tlogout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
         </ul>
       </div>
     </nav>
@@ -54,7 +55,7 @@ $fetch = $conn->query($sql);
     </div>
     <table class="table table-hover table-responsive table-bordered">
       <thead>
-        <tr class="active">
+        <tr class="table-background">
           <th>LRN Number</th>
           <th>Grade Level</th>
           <th>Last Name</th>
@@ -73,7 +74,7 @@ $fetch = $conn->query($sql);
       <tbody>
       	<?php
       		while ($row = $fetch->fetch_array()) {
-      		echo "<tr class='info'>";
+      		echo "<tr class='table-background-content'>";
       		echo "<td><span class='link-design' data-toggle='modal' data-target='#add_grade' onclick='value_field()'>".$row['lrn']."</span><input type='hidden' id='lrn_value' value='".$row['lrn']."'></td>";
           echo "<td>".$row['grade_level']."<input type='hidden' id='grade_level' value='".$row['grade_level']."'></td>";
       		echo "<td>".$row['last_name']." <input type='hidden' id='last_name' value='".$row['last_name']."'></td>";

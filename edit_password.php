@@ -1,17 +1,16 @@
 <?php
 session_start();
-$conn = new mysqli("localhost", "root", "", "enrollment_grading_system");
 $username = '';
 $username = $_SESSION['username'];
 	if ($username == '') {
 		echo "<script>alert('Please Login First');</script>";
 		echo "<script>window.location.assign('index.php');</script>";
 	}
-#$conn = new mysqli("localhost","id12720654_root", "DOS-sfP1Acyym#4(", "id12720654_enrollment_grading_system");
+include("connect.php");
 $sql = "SELECT * FROM enrollment_system WHERE username = '$username'";
 $result = $conn->query($sql);
 $fetch_id = $result->fetch_array();
-$stud_id = isset($fetch_id['student_id']);
+$stud_id = $fetch_id['student_id'];
 
 ?>
 <!DOCTYPE html>
@@ -20,6 +19,7 @@ $stud_id = isset($fetch_id['student_id']);
   <title>Student Viewing Page</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="images/favicon.png">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -47,15 +47,15 @@ $stud_id = isset($fetch_id['student_id']);
     <table>
       <tr>
        <td><h4>New Username: </h4></td>
-       <td><input type="text" name="new_username" class="form-control"></td>
+       <td><input type="text" name="new_username" class="form-control" required></td>
      </tr>
      <tr>
        <td><h4>Old Password: </h4></td>
-       <td><input type="password" name="old_password" class="form-control"></td>
+       <td><input type="password" name="old_password" class="form-control" required></td>
      </tr>
      <tr>
        <td><h4>New Password: </h4></td>
-       <td><input type="password" name="new_password" id="password_login" class="form-control"></td>
+       <td><input type="password" name="new_password" id="password_login" class="form-control" required></td>
      </tr>
      <tr>
           <td>

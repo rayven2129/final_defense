@@ -4,8 +4,7 @@ if ($_SESSION['username'] == null) {
   echo "<script>alert('Please Login First');</script>";
   echo "<script>window.location.assign('index.php');</script>";
 }
-#$conn = new mysqli("localhost","id12720654_root", "DOS-sfP1Acyym#4(", "id12720654_enrollment_grading_system");
-$conn = new mysqli("localhost", "root", "", "enrollment_grading_system");
+include("connect.php");
 $sql = "SELECT * FROM enrollment_system where student_id ='$_GET[id]'";
 $fetch = $conn->query($sql);
 $row = $fetch->fetch_array();
@@ -16,6 +15,7 @@ $row = $fetch->fetch_array();
   <title>Teacher Admin Page</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="images/favicon.png">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>

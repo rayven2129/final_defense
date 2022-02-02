@@ -5,8 +5,7 @@ if ($_SESSION['username'] == null) {
   echo "<script>window.location.assign('index.php');</script>";
 }
 $grade_level = $_SESSION['grade_level'];
-#$conn = new mysqli("localhost","id12720654_root", "DOS-sfP1Acyym#4(", "id12720654_enrollment_grading_system");
-$conn = new mysqli("localhost", "root", "", "enrollment_grading_system");
+include("connect.php");
 $sql = "SELECT * FROM grade_subject WHERE grade_level = '$grade_level'";
 $fetch = $conn->query($sql);
 ?>
@@ -16,6 +15,7 @@ $fetch = $conn->query($sql);
   <title>Export Grade-Teacher Admin Page</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="images/favicon.png">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -36,15 +36,16 @@ $fetch = $conn->query($sql);
           <li class="active"><a href="teacher_admin.php"><i class="fas fa-home"></i> Home</a></li>
           <li><a href="grading_system.php"><i class="fas fa-database"></i> Grading System</a></li>
           <li><a href="export_grade.php"><i class="fas fa-file-export"></i> Export Grade</a></li>
-          <li><a href="edit_accounts.php"><i class="fas fa-edit"></i> Edit Accounts</a></li>
-          <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+          <li><a href="edit_accounts.php"><i class="fas fa-edit"></i> Edit Basic Information</a></li>
+          <li><a href="edit_teacher_account.php"><i class="fas fa-key"></i> Edit Teacher Account</a></li>
+          <li><a href="tlogout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
         </ul>
       </div>
     </nav>
   <div class="container-fluid">
     <table class="table table-hover table-responsive table-bordered">
       <thead>
-        <tr class="danger">
+        <tr class="table-background">
           <th>GRADE QUARTER</th>
           <th>LAST NAME</th>
           <th>FIRST NAME</th>
@@ -66,7 +67,7 @@ $fetch = $conn->query($sql);
         <?php
           while ($row = $fetch->fetch_array()) {
           $mapeh = ($row['music']+$row['arts']+$row['pe']+$row['health'])/4;
-          echo "<tr class='info'>";
+          echo "<tr class='table-background-content'>";
           echo "<td>".$row['grading']."</td>";
           echo "<td>".$row['last_name']."</td>";
           echo "<td>".$row['first_name']."</td>";

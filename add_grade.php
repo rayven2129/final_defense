@@ -1,6 +1,5 @@
 <?php
-$conn = new mysqli("localhost","root","", "enrollment_grading_system");
-  #$conn = new mysqli("localhost","id12720654_root", "DOS-sfP1Acyym#4(", "id12720654_enrollment_grading_system");
+include("connect.php");
   $grading_period_result = $_POST['grading_period_result'];
   $last_name = $_POST['last_name'];
   $grade_level =$_POST['grade_level'];
