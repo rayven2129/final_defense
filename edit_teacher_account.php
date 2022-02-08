@@ -50,39 +50,39 @@ $t_id = $result['userid'];
     <table class="background-content">
       <tr>
        <td><h4>Last Name: </h4></td>
-       <td><input type="text" name="last_name" id="last_name_value" class="form-control" oninput="uppercaseEvent(event)"></td>
+       <td><input type="text" name="last_name" id="last_name_value" class="form-control" oninput="uppercaseEvent(event)" required></td>
      </tr>
      <tr>
        <td><h4>First Name: </h4></td>
-       <td><input type="text" name="first_name" id="first_name_value" class="form-control" oninput="uppercaseEvent(event)"></td>
+       <td><input type="text" name="first_name" id="first_name_value" class="form-control" oninput="uppercaseEvent(event)" required></td>
      </tr>
      <tr>
        <td><h4>Middle Name: </h4></td>
-       <td><input type="text" name="middle_name" id="middle_name_value" class="form-control" oninput="uppercaseEvent(event)"></td>
+       <td><input type="text" name="middle_name" id="middle_name_value" class="form-control" oninput="uppercaseEvent(event)" required></td>
      </tr>
      <tr>
        <td><h4>Contact Number: </h4></td>
-       <td><input type="text" name="contact_number" class="form-control" ></td>
+       <td><input type="text" name="contact_number" class="form-control"  required></td>
      </tr>
      <tr>
        <td><h4>Email Address: </h4></td>
-       <td><input type="text" name="email_address" class="form-control"></td>
+       <td><input type="text" name="email_address" class="form-control" required></td>
      </tr>
      <tr>
        <td><h4>Grade Level: </h4></td>
-       <td><input type="text" name="grade_level_value" id="grade_level_value" class="form-control"></td>
+       <td><input type="text" name="grade_level_value" id="grade_level_value" class="form-control" required></td>
      </tr>
      <tr>
        <td><h4>Section: </h4></td>
-       <td><input type="text" name="section" id="section_value" class="form-control"></td>
+       <td><input type="text" name="section" id="section_value" class="form-control" required></td>
      </tr>
       <tr>
        <td><h4>New Username: </h4></td>
-       <td><input type="text" name="new_username" class="form-control"></td>
+       <td><input type="text" name="new_username" class="form-control" required></td>
      </tr>
      <tr>
        <td><h4>New Password: </h4></td>
-       <td><input type="password" name="new_password" id="password_login" class="form-control"></td>
+       <td><input type="password" name="new_password" id="password_login" class="form-control" required></td>
      </tr>
      <tr>
           <td>
