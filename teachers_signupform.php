@@ -46,7 +46,7 @@
     <h2 class="fs-title">School Information</h2>
     <h3 class="fs-subtitle">Your information on school</h3>
     <label for="valid_teachers_id" class="fs-subtitle">Valid Teachers Identification Card</label>
-    <input type="file" name="valid_id" accept="image/*">
+    <input type="file" name="valid_id" accept="image/*" required>
     <label for="grade_level_option" class="fs-subtitle">Grade Level</label>
     <select id="grade_level_option" onchange="grade_level_change_function()">
       <option value="Invalid">Please Select Option</option>
@@ -67,8 +67,8 @@
     <input type="password" name="password" id="password_login" placeholder="Password" />
     <table>
       <tr>
-        <td><span class="fs-subtitle">Show Password</span></td>
-        <td><input type="checkbox" onchange="checkPassword()"></td>
+        <td><span class="fs-subtitle">Show Password &nbsp;&nbsp;</span></td>
+        <td><input type="checkbox" onchange="checkPassword()" class="form-check-input"></td>
       </tr>
     </table>
     <input type="button" name="previous" class="previous action-button" value="Previous" />

@@ -82,7 +82,7 @@ while ($fetch = $fetch_res ->fetch_array()) {
          <span class="navbar-toggler-icon"></span></button>
             <ul class="navbar-nav me-auto navbar-header">
                 <li class="navbar-brand">
-                    <a class="nav-link text-white" href="student_grade_viewing.ph">Student Viewing Page</a>
+                    <a class="nav-link text-white" href="student_grade_viewing.php">Student Viewing Page</a>
                 </li>
             </ul>
          
