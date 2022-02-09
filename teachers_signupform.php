@@ -12,7 +12,7 @@
 </head>
 <body>
   <!-- multistep form -->
-<form id="msform" action="teachers_admin_insert_account.php" method="POST">
+<form id="msform" action="teachers_admin_insert_account.php" method="POST" enctype="multipart/form-data">
   <!-- progressbar -->
   <ul id="progressbar">
     <li class="active">Personal Information</li>
@@ -45,7 +45,17 @@
   <fieldset>
     <h2 class="fs-title">School Information</h2>
     <h3 class="fs-subtitle">Your information on school</h3>
-    <input type="text" name="grade_level" id="grade_level_value" placeholder="Grade Level to be Advised" />
+    <label for="valid_teachers_id" class="fs-subtitle">Valid Teachers Identification Card</label>
+    <input type="file" name="valid_id" accept="image/*">
+    <label for="grade_level_option" class="fs-subtitle">Grade Level</label>
+    <select id="grade_level_option" onchange="grade_level_change_function()">
+      <option value="Invalid">Please Select Option</option>
+      <option value="7">Grade 7</option>
+      <option value="8">Grade 8</option>
+      <option value="9">Grade 9</option>
+      <option value="10">Grade 10</option>
+    </select>
+    <input type="hidden" name="grade_level" id="grade_level_result">
     <input type="text" name="section" id="section_value"  readonly />
     <input type="button" name="previous" class="previous action-button" value="Previous" />
     <input type="button" name="next" class="next action-button" value="Next" />
@@ -86,15 +96,17 @@
     var x = document.getElementById("gender_type_source").value;
     document.getElementById("gender_type_result").value = x;
   }
+  function grade_level_change_function(){
+    var x = document.getElementById("grade_level_option").value;
+    document.getElementById("grade_level_result").value = x;
+     var lname = document.getElementById("last_name").value;
+     var fname = document.getElementById("first_name").value;
+     var mname = document.getElementById("middle_name").value;
+     var grade_level = document.getElementById("grade_level_result").value;
+     document.getElementById("section_value").value = "G"+grade_level+" - "+fname.charAt(0)+mname.charAt(0)+lname.charAt(0)
+  }
   document.querySelector(".cancel").onclick = function(){
   	window.location.assign("teachers_index.php");
-  }
-  document.querySelector("#grade_level_value").onkeyup = function(){
-    var lname = document.getElementById("last_name").value;
-    var fname = document.getElementById("first_name").value;
-    var mname = document.getElementById("middle_name").value;
-    var grade_level = document.getElementById("grade_level_value").value;
-    document.getElementById("section_value").value = "G"+grade_level+" - "+fname.charAt(0)+mname.charAt(0)+lname.charAt(0)
   }
 </script>
 </html>

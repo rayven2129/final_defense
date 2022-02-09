@@ -9,12 +9,14 @@ $gender_type_result = $_POST['gender_type_result'];
 $age = $_POST['age'];
 $date_of_birth = $_POST['date_of_birth'];
 $place_of_birth = $_POST['place_of_birth'];
-$house_street = $_POST['house_street'];
+$house_number = $_POST['house_number'];
+$street_number = $_POST['street_number'];
+$villages = $_POST['villages'];
 $barangay = $_POST['barangay'];
 $municipal = $_POST['municipal'];
 $province = $_POST['province'];
 $zip_code = $_POST['zip_code'];
-$complete_address = $house_street.", ".$barangay .", ".$municipal .", ". $province;
+$complete_address = $house_number." ".$street_number." ".$villages." ".$barangay .", ".$municipal .", ". $province;
 $contact_number = $_POST['contact_number'];
 $email_address = $_POST['email_address'];
 $guardian_name = $_POST['guardian_name'];
@@ -35,10 +37,10 @@ $fetch = $query->fetch_array();
 			if ($conn->query($sql) == TRUE) {
 				$insert_second_table = "INSERT into grading_system(student_id) VALUES ((SELECT student_id from enrollment_system WHERE username = '$username'))";
 					if ($conn->query($insert_second_table) == TRUE) {
-						echo "<script>alert('Created Account Success!');</script>";
+						echo "<script>alert('Good day Mr/Ms: ".$last_name.". You created a account successfully in our system. If you have any problems, please contact our administrator. Thank you and have a nice day!');</script>";
 						echo "<script>window.location.assign('index.php');</script>";
 					}else{
-						echo "<script>alert('Create Accound Failed!');</script>";
+						echo "<script>alert('Create Accound Failed, maybe you create an existing account or your data that you input is incorrect. Please try again. Thank you!');</script>";
 						echo "<script>window.location.assign('index.php');</script>";
 					}
 				

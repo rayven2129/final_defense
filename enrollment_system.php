@@ -49,7 +49,9 @@
   </fieldset>
    <fieldset>
     <h2 class="fs-title">Additional Personal Information</h2>
-    <input type="text" name="house_street" placeholder="House Number/Street Number" oninput="uppercaseEvent(event)" />
+    <input type="text" name="house_number" placeholder="House Number" oninput="uppercaseEvent(event)" />
+    <input type="text" name="street_number" placeholder="Street Number" oninput="uppercaseEvent(event)" />
+    <input type="text" name="villages" placeholder="Sitio or Villages" oninput="uppercaseEvent(event)" />
     <input type="text" name="barangay" placeholder="Barangay" oninput="uppercaseEvent(event)" />
     <input type="text" name="municipal" placeholder="Municipal/City" oninput="uppercaseEvent(event)" />
     <input type="text" name="province" placeholder="Province" oninput="uppercaseEvent(event)" />
@@ -63,7 +65,15 @@
     <h2 class="fs-title">School Information</h2>
     <h3 class="fs-subtitle">Your information on school</h3>
     <input type="text" name="lrn" placeholder="Learners References Number" />
-    <input type="text" name="grade_level" placeholder="Grade Level To be Enrolled" />
+    <label for="grade_level_option" class="fs-subtitle">Grade Level</label>
+    <select id="grade_level_option" onchange="grade_level_change_function()">
+      <option value="Invalid">Please Select Option</option>
+      <option value="7">Grade 7</option>
+      <option value="8">Grade 8</option>
+      <option value="9">Grade 9</option>
+      <option value="10">Grade 10</option>
+    </select>
+    <input type="hidden" name="grade_level" id="grade_level_result">
     <input type="text" name="guardian_name" placeholder="Guardian's Name" oninput="uppercaseEvent(event)" />
     <input type="text" name="guardian_contact_number" placeholder="Guardian's Contact  Number" oninput="uppercaseEvent(event)" />
     <input type="text" name="guardian_relation_to_student" placeholder="Guardian's Relation to Student" oninput="uppercaseEvent(event)" />
@@ -77,7 +87,7 @@
     <input type="password" name="password" id="password_login" placeholder="Password" required />
     <table>
       <tr>
-        <td><span class="fs-subtitle">Show Password</span></td>
+        <td><span class="fs-subtitle">Show Password &nbsp;&nbsp;</span></td>
         <td><input type="checkbox" onchange="checkPassword()"></td>
       </tr>
     </table>
@@ -108,6 +118,10 @@
   }
   document.querySelector(".cancel").onclick = function(){
   	window.location.assign("index.php");
+  }
+  function grade_level_change_function(){
+    var x = document.getElementById("grade_level_option").value;
+    document.getElementById("grade_level_result").value = x;
   }
 </script>
 </html>

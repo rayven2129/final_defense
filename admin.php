@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Teacher's Admin Login Page</title>
+	<title>Admin Login Page</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" href="images/favicon.png">
@@ -18,7 +18,7 @@
 		<img src="images/logo_removebg.png" alt="logo" class="images-design">
 	</fieldset>
 	<fieldset class="container login-content">
-		<form action="teachers_login.php" method="POST">
+		<form action="admin_login.php" method="POST">
 			<table class="table-design">
 				<tr>	
 					<td>
@@ -55,12 +55,6 @@
 					<td></td>
 					<td>
 						<button type="reset" class="form-control btn btn-design">Clear</button>
-					</td>
-				</tr>
-				<tr>
-					<td></td>
-					<td>
-						<p>No account? <span><a href="teachers_signupform.php">Sign Up here</a></span>!</p>
 					</td>
 				</tr>
 			</table>	

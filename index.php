@@ -13,7 +13,10 @@
 	<script src="https://kit.fontawesome.com/f9a76d52b7.js" crossorigin="anonymous"></script>
 </head>
 <body>
-	<fieldset class="container div-header"><p class="text-center text-uppercase title-header">Login Center</p></fieldset>
+	<div class="container div-design">
+	<fieldset class="container div-header">
+		<img src="images/logo_removebg.png" alt="logo" class="images-design">
+	</fieldset>
 	
 	<fieldset class="container login-content">
 		<form action="login.php" method="POST">
@@ -36,7 +39,7 @@
 				</tr>
 				<tr>
 					<td>
-						<span>Show password</span>
+						<span>Show password &nbsp;&nbsp;&nbsp;</span>
 					</td>
 					<td>
 						<input type="checkbox" id="password_check" onclick="check_function()" class="checkbox-inline">
@@ -52,17 +55,19 @@
 				<tr>
 					<td></td>
 					<td>
-						<button type="reset" class="form-control btn-success">Clear</button>
+						<button type="reset" class="form-control btn btn-design">Clear</button>
 					</td>
 				</tr>
 				<tr>
+					<td></td>
 					<td>
-						<p>No account?<span>Enroll <a href="enrollment_system.php">here</a></span>!</p>
+						<p>No account? <span><a href="enrollment_system.php">Enroll here</a></span>!</p>
 					</td>
 				</tr>
 			</table>	
 		</form>
 	</fieldset>
+	</div>
 </body>
 <script type="text/javascript">
 	function check_function(){
@@ -94,8 +99,10 @@ $conn = new mysqli("localhost", "root", "");
 				$second_table = "CREATE TABLE grading_system(id_grades int(255) auto_increment not null, student_id int(255) not null, primary key(id_grades), foreign key(student_id) references enrollment_system(student_id))";
 				$connectDatabase->query($second_table);
 				$grades_sql = "CREATE TABLE grade_subject(id_subject int(255) auto_increment not null, id_grades int(255) not null,grade_level int(255) NOT NULL,grading varchar(255) not null, last_name varchar(255) not null, first_name varchar(255) not null ,math int(255) not null,science int(255) not null,ap int(255) not null,filipino int(255) not null,english int(255) not null,pe int(255) not null,health int(255) not null,music int(255) not null,arts int(255) not null,tle int(255) not null, esp int(255) not null,primary key(id_subject), foreign key(id_grades) references grading_system(id_grades))";
+				$grades_sql_export = "CREATE TABLE grade_subject_export(id_subject int(255) auto_increment not null, id_grades int(255) not null,grade_level int(255) NOT NULL,grading varchar(255) not null, last_name varchar(255) not null, first_name varchar(255) not null ,math int(255) not null,science int(255) not null,ap int(255) not null,filipino int(255) not null,english int(255) not null,pe int(255) not null,health int(255) not null,music int(255) not null,arts int(255) not null,tle int(255) not null, esp int(255) not null,teachers_name varchar(255) not null, section varchar(255) not null, school_year varchar(255) not null,primary key(id_subject), foreign key(id_grades) references grading_system(id_grades))";
+				$connectDatabase->query($grades_sql_export);
 				$connectDatabase->query($grades_sql);
-				$teachers_database = "CREATE TABLE teachers_account(userid INT(255) AUTO_INCREMENT NOT NULL,t_last_name VARCHAR(255) NOT NULL, t_first_name VARCHAR(255) NOT NULL, t_middle_name VARCHAR(255) NOT NULL, t_gender VARCHAR(255) NOT NULL, t_contact_number VARCHAR(255) NOT NULL, t_email_adddress VARCHAR(255) NOT NULL, t_grade_level VARCHAR(255) NOT NULL, t_section VARCHAR(255) NOT NULL, t_username VARCHAR(255) NOT NULL, t_password VARCHAR(255) NOT NULL, PRIMARY KEY(userid))";
+				$teachers_database = "CREATE TABLE teachers_account(userid INT(255) AUTO_INCREMENT NOT NULL,t_last_name VARCHAR(255) NOT NULL, t_first_name VARCHAR(255) NOT NULL, t_middle_name VARCHAR(255) NOT NULL, t_gender VARCHAR(255) NOT NULL, t_contact_number VARCHAR(255) NOT NULL, t_email_adddress VARCHAR(255) NOT NULL, t_grade_level VARCHAR(255) NOT NULL, t_section VARCHAR(255) NOT NULL, t_username VARCHAR(255) NOT NULL, t_password VARCHAR(255) NOT NULL,images_files varchar(255) NOT NULL, PRIMARY KEY(userid))";
 				$connectDatabase->query($teachers_database);
 			}else{
 				

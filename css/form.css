@@ -1,5 +1,5 @@
 /*custom font*/
-@import url(http://fonts.googleapis.com/css?family=Montserrat);
+@import url(http://fonts.googleapis.com/css?family=sans-serif);
 
 /*basic reset*/
 * {margin: 0; padding: 0;}
@@ -17,7 +17,7 @@ html {
 }
 
 body {
-  font-family: montserrat, arial, verdana;
+  font-family:  sans-serif, sans-serif, sans-serif;
 }
 /*form styles*/
 #msform {
@@ -51,7 +51,7 @@ body {
   margin-bottom: 10px;
   width: 100%;
   box-sizing: border-box;
-  font-family: montserrat;
+  font-family: sans-serif;
   color: #2C3E50;
   font-size: 13px;
 }
