@@ -40,9 +40,9 @@
               <option value="FEMALE">Female</option>
     </select>
     <input type="hidden" name="gender_type_result" id="gender_type_result" oninput="uppercaseEvent(event)">
-    <input type="text" name="age" placeholder="Age" />
-    <label for="date_of_birth" class="fs-subtitle">Date Of Birth</label>
-    <input type="date" name="date_of_birth" id="date_of_birth" placeholder="Date Of Birth"/>
+    <input type="text" name="age" placeholder="Age" id="age_value" readonly/>
+    <label for="date_of_birth" class="fs-subtitle" id="date_value">Date Of Birth</label>
+    <input type="date" name="date_of_birth" id="date_of_birth" placeholder="Date Of Birth" onchange="age_find()"/>
     <input type="text" name="place_of_birth" placeholder="Place of Birth" oninput="uppercaseEvent(event)">
     <input type="button" name="previous" class="cancel action-button" value="Cancel" />
     <input type="button" name="next" class="next action-button" value="Next" />
@@ -122,6 +122,23 @@
   function grade_level_change_function(){
     var x = document.getElementById("grade_level_option").value;
     document.getElementById("grade_level_result").value = x;
+  }
+  function age_find(){
+    var mydate = document.getElementById('date_of_birth').value;
+    var now =new Date();                            //getting current date
+    var currentY= now.getFullYear();                //extracting year from the date
+    var currentM= now.getMonth();                   //extracting month from the date
+      
+    var dobget =document.getElementById("date_of_birth").value; //getting user input
+    var dob= new Date(dobget);                             //formatting input as date
+    var prevY= dob.getFullYear();                          //extracting year from input date
+    var prevM= dob.getMonth();                             //extracting month from input date
+      
+    var ageY =currentY - prevY;
+    var ageM =Math.abs(currentM- prevM);          //converting any negative value to positive
+      
+    var res = ageY;
+    document.getElementById("age_value").value = res;
   }
 </script>
 </html>

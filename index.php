@@ -16,6 +16,12 @@
 	<div class="container div-design">
 	<fieldset class="container div-header">
 		<img src="images/logo_removebg.png" alt="logo" class="images-design">
+		<br><br>
+		<span style="margin-left: 2em; width: 500px; position: absolute;">RECTO MEMORIAL NATIONAL<br>HIGH SCHOOL</span>
+		<br>
+		<br>
+		<br>
+		<span style="margin-left: 100px;">LOGIN CENTER</span>
 	</fieldset>
 	
 	<fieldset class="container login-content">

@@ -60,9 +60,9 @@ body{
 	width:6cm;
 	height: auto;
 	border-radius: 50%;
-	margin-left: auto;
-	margin-right: auto;
-	display: block;
+	margin-left: -10em;
+	position: absolute;
+	
 }
 .login-content{
 	display: flex;
