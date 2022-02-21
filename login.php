@@ -1,22 +1,20 @@
 <?php
 session_start();
 include("connect.php");
-$username = $conn->real_escape_string($_POST['username']);
-$password = $conn->real_escape_string($_POST['password']);
+$username = $conn->real_escape_string($_GET['username']);
+$password = $conn->real_escape_string($_GET['password']);
 
 $sql = "SELECT * FROM enrollment_system WHERE username = '$username' AND password_user = '$password'";
 $result = $conn->query($sql);
 $fetch = $result->fetch_array();
 if (($username == '' && $password == '')) {
-		echo "<script>alert('Wrong username and password');</script>";
-		echo "<script>window.location.assign('index.php')</script>";
+		echo 201;
 }else{
 	if ($username == isset($fetch['username']) && $password == isset($fetch['password_user'])){
-		echo "<script>window.location.assign('student_grade_viewing.php');</script>";
+		echo 200;
 		$_SESSION['username'] = $username;
 	}else{
-		echo "<script>alert('Wrong username and password');</script>";
-		echo "<script>window.location.assign('index.php');</script>";
+		echo 201;
 	}
 }
 ?>

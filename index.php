@@ -21,18 +21,18 @@
 		<br>
 		<br>
 		<br>
-		<span style="margin-left: 100px;">LOGIN CENTER</span>
+		<span style="margin-left: 92px;">STUDENT PORTAL</span>
 	</fieldset>
 	
 	<fieldset class="container login-content">
-		<form action="login.php" method="POST">
+		<form action="" method="GET" onkeydown="eventFunction(event)">
 			<table class="table-design">
 				<tr>	
 					<td>
 						<p>Username: </p>
 					</td>
 					<td>
-						<input type="text" name="username" class="form-control">
+						<input type="text" name="username" id="username_value" class="form-control">
 					</td>
 				</tr>
 				<tr>
@@ -54,7 +54,13 @@
 				<tr>
 					<td></td>
 					<td>
-						<button type="submit" class="form-control btn-success">Login</button>
+						<span style="background-color: red; display: none; font-weight: bolder;" class="form-control text-center" id="error_login">Wrong Username or Password</span>
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>
+						<button type="button" onclick="ajaxFunction()" class="form-control btn-success">Login</button>
 						
 					</td>
 				</tr>
@@ -70,12 +76,44 @@
 						<p>No account? <span><a href="enrollment_system.php">Enroll here</a></span>!</p>
 					</td>
 				</tr>
+				
 			</table>	
 		</form>
 	</fieldset>
 	</div>
 </body>
 <script type="text/javascript">
+	function eventFunction(event){
+		if (event.key == 'Enter') {
+			ajaxFunction();
+			}
+	}
+	function ajaxFunction(){
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function(){
+			if (this.readyState == 4 && this.status == 200) {
+
+				if (this.response == 201) {
+					var err = document.getElementById("error_login");
+					err.style.display = "block";
+					setTimeout(function (){
+					err.style.display = "none";
+					}, 1500);
+				}else if (this.response == 200){
+					window.location.assign('student_grade_viewing.php');
+				}
+
+			}
+		}
+		var username_value = document.getElementById("username_value").value;
+		var password_value = document.getElementById("password_login").value;
+		var queryString = "?username="+username_value + "& password="+password_value;
+		xhttp.open("GET","login.php"+queryString,true);
+		xhttp.send();
+		
+	}
+	
+
 	function check_function(){
 		var x = document.querySelector("#password_login");
 		if (x.type == "password") {

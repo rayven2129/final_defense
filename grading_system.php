@@ -95,7 +95,7 @@ $fetch = $conn->query($sql);
           <th>HEALTH</th>
           <th>MAPEH</th>
           <th>EDIT</th>
-          <th>SHARE TO STUDENT</th>
+          <th>SEND TO STUDENT</th>
         </tr>
       </thead>
       <tbody>
@@ -119,7 +119,7 @@ $fetch = $conn->query($sql);
           echo "<td>".$row['health']."</td>";
           echo "<td>".$mapeh."</td>";
           echo "<td><a href='edit_grade.php?id=".$row['id_subject']."' target='_blank'>Edit Grades</td>";
-          echo "<td><a href='share_to_student.php?id=".$row['id_subject']."' target='_blank' class='share-design'><i class='fas fa-share-alt'></i>Share</td>";
+          echo "<td><a href='share_to_student.php?id=".$row['id_subject']."' target='_blank' class='share-design'><i class='fas fa-share-alt'></i>Send</td>";
       		echo "</tr>";
 
 

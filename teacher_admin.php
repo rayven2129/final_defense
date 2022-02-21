@@ -13,7 +13,7 @@ $fetch = $conn->query($sql);
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Teacher Admin Page</title>
+  <title>Teacher Portal Page</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="images/favicon.png">
@@ -94,10 +94,10 @@ $fetch = $conn->query($sql);
       	<?php
       		while ($row = $fetch->fetch_array()) {
       		echo "<tr class='table-background-content'>";
-      		echo "<td><span class='link-design' data-bs-toggle='modal' data-bs-target='#add_grade' onclick='value_field()'>".$row['lrn']."</span><input type='hidden' id='lrn_value' value='".$row['lrn']."'></td>";
-          echo "<td>".$row['grade_level']."<input type='hidden' id='grade_level' value='".$row['grade_level']."'></td>";
-      		echo "<td>".$row['last_name']." <input type='hidden' id='last_name' value='".$row['last_name']."'></td>";
-      		echo "<td>".$row['first_name']."<input type='hidden' id='first_name' value='".$row['first_name']."'></td>";
+      		echo "<td><form action=''><input type='button' class='link-design btn' data-bs-toggle='modal' data-bs-target='#add_grade' onclick='value_field(this.value)' value='".$row['lrn']."'></button></td>";
+          echo "<td>".$row['grade_level']."<input type='hidden' id='grade_level' value='".$row['grade_level']."'></form></td>";
+      		echo "<td>".$row['last_name']." <input type='hidden' id='' value='".$row['last_name']."'></td>";
+      		echo "<td>".$row['first_name']."<input type='hidden' id='' value='".$row['first_name']."'></td>";
       		echo "<td>".$row['middle_name']."</td>";
       		echo "<td>".$row['gender']."</td>";
           echo "<td>".$row['age']."</td>";
@@ -121,8 +121,7 @@ $fetch = $conn->query($sql);
           <form action="add_grade.php" method="POST">
       <table class="table-design">
         <tr>
-          <th></th>
-          <th><h4>Add Grades for Mr./Ms. <span id="span_modal_header"></span></h4></th>
+          <th colspan="2"><h4 style="margin-left: 150px;">Add Grades for Mr./Ms. <span id="span_modal_header"></span></h4></th>
         </tr>
         <tr>
           <td class="table-spacing">Grading Period</td>
@@ -148,47 +147,47 @@ $fetch = $conn->query($sql);
         </tr>
         <tr>
           <td class="table-spacing"><p>Math Grade: </p></td>
-          <td><input type="text" name="math" id="math" class="form-control"onclick="mathfunction()"></td>
+          <td><input type="text" name="math" id="math" class="form-control"></td>
         </tr>
         <tr>
           <td class="table-spacing"><p>Science Grade: </p></td>
-          <td><input type="text" name="science" id="science" class="form-control" data-toggle="modal" data-target="#subject" onclick="sciencefunction()"></td>
+          <td><input type="text" name="science" id="science" class="form-control" data-toggle="modal" data-target="#subject"></td>
         </tr>
         <tr>
           <td class="table-spacing"><p>Araling Panlipunan Grade: </p></td>
-          <td><input type="text" name="ap" id="ap" class="form-control" data-toggle="modal" data-target="#subject" onclick="apfunction()"></td>
+          <td><input type="text" name="ap" id="ap" class="form-control" data-toggle="modal" data-target="#subject"></td>
         </tr>
         <tr>
           <td class="table-spacing"><p>Filipino Grade: </p></td>
-          <td><input type="text" name="filipino" id="filipino" class="form-control" data-toggle="modal" data-target="#subject" onclick="filipinofunction()"></td>
+          <td><input type="text" name="filipino" id="filipino" class="form-control" data-toggle="modal" data-target="#subject"></td>
         </tr>
         <tr>
           <td class="table-spacing"><p>English Final Grade: </p></td>
-          <td><input type="text" name="english" id="english" class="form-control" data-toggle="modal" data-target="#subject" onclick="englishfunction()"></td>
+          <td><input type="text" name="english" id="english" class="form-control" data-toggle="modal" data-target="#subject"></td>
         </tr>
           <tr>
           <td class="table-spacing"><p>Technology Livelihood and Education Grade: </p></td>
-          <td><input type="text" name="tle" id="tle" class="form-control" data-toggle="modal" data-target="#subject" onclick="tlefunction()"></td>
+          <td><input type="text" name="tle" id="tle" class="form-control" data-toggle="modal" data-target="#subject"></td>
         </tr>
          <tr>
           <td class="table-spacing"><p>Edukasyon sa Pagpapakatao Grade: </p></td>
-          <td><input type="text" name="esp" id="esp" class="form-control" data-toggle="modal" data-target="#subject" onclick="espfunction()"></td>
+          <td><input type="text" name="esp" id="esp" class="form-control" data-toggle="modal" data-target="#subject"></td>
         </tr>
         <tr>
           <td class="table-spacing"><p>Music Final Grade: </p></td>
-          <td><input type="text" name="music" id="music" class="form-control" data-toggle="modal" data-target="#subject" onclick="musicfunction()"></td>
+          <td><input type="text" name="music" id="music" class="form-control" data-toggle="modal" data-target="#subject"></td>
         </tr>
         <tr>
           <td class="table-spacing"><p>Arts Final Grade: </p></td>
-          <td><input type="text" name="arts" id="arts" class="form-control" data-toggle="modal" data-target="#subject" onclick="artsfunction()"></td>
+          <td><input type="text" name="arts" id="arts" class="form-control" data-toggle="modal" data-target="#subject"></td>
         </tr>
         <tr>
           <td class="table-spacing"><p>Physical Education Grade: </p></td>
-          <td><input type="text" name="pe" id="pe" class="form-control" data-toggle="modal" data-target="#subject" onclick="pefunction()"></td>
+          <td><input type="text" name="pe" id="pe" class="form-control" data-toggle="modal" data-target="#subject"></td>
         </tr>
         <tr>
           <td class="table-spacing"><p>Health Final Grade: </p></td>
-          <td><input type="text" name="health" id="health" class="form-control" data-toggle="modal" data-target="#subject" onclick="healthfunction()"></td>
+          <td><input type="text" name="health" id="health" class="form-control" data-toggle="modal" data-target="#subject"></td>
         </tr>
         <tr>
           <td></td>
@@ -208,18 +207,25 @@ $fetch = $conn->query($sql);
   </div>
 </body>
 <script type="text/javascript">
-  function value_field(){
-    var x = document.getElementById('last_name').value;
-    var y = document.getElementById('first_name').value;
-    var lrn_var = document.getElementById('lrn_value').value;
-    var g_level = document.getElementById("grade_level").value;
-    document.getElementById("grade_level_result").value = g_level;
-    document.getElementById('last_name_value').value = x;
-    document.getElementById('first_name_value').value = y;
-    document.getElementById('last_name_value_hidden').value = x;
-    document.getElementById('first_name_value_hidden').value = y;
-    document.getElementById('lrn_name').value = lrn_var;
-    document.getElementById('span_modal_header').innerHTML = propercase(x);
+  function value_field(lrn_var){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function(){
+      if (this.readyState == 4 && this.status == 200) {
+        var res = JSON.parse(this.response);
+        var header_content = res["last_name"];
+        var first_name = res["first_name"];
+        var grade_level = res["grade_level"];
+        document.getElementById("lrn_name").value = lrn_var;
+        document.getElementById('span_modal_header').innerHTML= propercase(header_content) +" "+ propercase(first_name);
+        document.getElementById('last_name_value').value = header_content;
+        document.getElementById('first_name_value').value=first_name;
+        document.getElementById('last_name_value_hidden').value = header_content;
+        document.getElementById('first_name_value_hidden').value = first_name;
+        document.getElementById('grade_level_result').value = grade_level;
+      }
+    };
+   xhttp.open("GET", "request.php?request="+lrn_var, true);
+   xhttp.send();
   }
   function propercase(str){
     str = str.toLowerCase().split(' ');
