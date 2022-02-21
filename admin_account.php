@@ -31,7 +31,7 @@
 						<p>Username: </p>
 					</td>
 					<td>
-						<input type="text" name="username" class="form-control" id="username">
+						<input type="text" name="username" class="form-control" id="username_value">
 					</td>
 				</tr>
 				<tr>
@@ -59,8 +59,7 @@
 				<tr>
 					<td></td>
 					<td>
-						<button type="button" class="form-control btn-success" onclick="teacher_login()">Login</button>
-						
+						<button type="button" class="form-control btn-success" onclick="admin_login()">Login</button>
 					</td>
 				</tr>
 				<tr>
@@ -75,3 +74,43 @@
 	</fieldset>
 	</div>
 </body>
+<script type="text/javascript">
+	function check_function(){
+		var x = document.querySelector("#password_login");
+		if (x.type == "password") {
+			x.type = "text";
+		}else{
+			x.type = "password";
+		}
+	}
+	function eventFunction(event){
+		if(event.key == "Enter"){
+			admin_login()
+		}
+	}
+	function admin_login(){
+		var ajax = new XMLHttpRequest();
+		ajax.onreadystatechange = function(){
+			if (ajax.readyState == 4 && ajax.status == 200) {
+				console.log(this.response)
+				if (this.response == 200) {
+					
+					window.location.assign("admin_dashboard.php");
+				}else if(this.response == 201){
+					var d = document.querySelector("#error_login");
+					d.style.display = "block";
+					setTimeout(function(){
+						d.style.display = "none";
+					}, 1500);
+				}
+			}
+		}
+		var username = document.querySelector("#username_value").value;
+		var password = document.querySelector("#password_login").value;
+		ajax.open("GET","admin_auth.php?username="+username+"&password="+password, true);
+		ajax.send();
+	}
+
+
+</script>
+</html>
