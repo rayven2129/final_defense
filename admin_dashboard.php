@@ -27,7 +27,7 @@ $fetch = $conn->query($sql);
 <body>
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <div class="container-fluid">
-          <a href="teacher_admin.php" class="navbar-brand">
+          <a href="admin_dashboard.php" class="navbar-brand">
             <img src="images/logo_navigation-removebg-preview.png" alt="logo" class="rounded-pill" style="width: 60px;"><span style="font-size: 35px;">|</span>
           </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
@@ -48,7 +48,7 @@ $fetch = $conn->query($sql);
                       <a href="" class="nav-link"><i class="fas fa-chalkboard-teacher"></i> Teachers Data</a>
                     </li>
                     <li class="nav-item">
-                      <a href="" class="nav-link"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                      <a href="admin_logout.php" class="nav-link"><i class="fas fa-sign-out-alt"></i> Logout</a>
                     </li>
                   </ul>
               </div>
@@ -93,6 +93,13 @@ $fetch = $conn->query($sql);
       		echo "<td>".$row['gender']."</td>";
           echo "<td>".$row['age']."</td>";
       		echo "<td>".$row['contact_number']."</td>";
+      		echo "<td>
+            		<select>
+            		    <option>A</option>
+                    <option>B</option>
+                    <option>C</option>
+            		</select>
+            		</td>";
       		echo "</tr>";
       		}
       	?>
