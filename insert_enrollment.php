@@ -32,7 +32,7 @@ $fetch = $query->fetch_array();
 		echo "<script>alert('Username exists');</script>";
 		echo "<script>window.location.assign('enrollment_system.php');</script>";
 	}else{
-		$sql = "INSERT INTO enrollment_system(lrn,grade_level,last_name,first_name,middle_name,gender,age,date_of_birth,place_of_birth,address,zip_code,contact_number,email_address,guardian_name,guardian_contact_number,guardian_relation_to_student,username,password_user,student_status) VALUES ('$lrn','$grade_level','$last_name','$first_name','$middle_name','$gender_type_result','$age','$date_of_birth','$place_of_birth','$complete_address','$zip_code','$contact_number','$email_address','$guardian_name','$guardian_contact_number','$guardian_relation_to_student','$username','$password','$student_type')";
+		$sql = "INSERT INTO enrollment_system(lrn,grade_level,last_name,first_name,middle_name,gender,age,date_of_birth,place_of_birth,address,zip_code,contact_number,email_address,guardian_name,guardian_contact_number,guardian_relation_to_student,username,password_user,student_status, section) VALUES ('$lrn','$grade_level','$last_name','$first_name','$middle_name','$gender_type_result','$age','$date_of_birth','$place_of_birth','$complete_address','$zip_code','$contact_number','$email_address','$guardian_name','$guardian_contact_number','$guardian_relation_to_student','$username','$password','$student_type','')";
 
 			if ($conn->query($sql) == TRUE) {
 				$insert_second_table = "INSERT into grading_system(student_id) VALUES ((SELECT student_id from enrollment_system WHERE username = '$username'))";

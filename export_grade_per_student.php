@@ -31,7 +31,7 @@ $data_student = $query_data->fetch_array();
   <script src="https://kit.fontawesome.com/f9a76d52b7.js" crossorigin="anonymous"></script>
   <script type="text/javascript" src="js/global_function.js"></script>
 </head>
-<body>
+<body onload="window.print()">
 <div class="container">
       <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <div class="container-fluid">

@@ -74,39 +74,39 @@ $t_id = $result['userid'];
       <form action="" method="POST">
     <table class="background-content">
       <tr>
-       <td class="table-spacing"><h4>Last Name: </h4></td>
+       <td class="table-spacing"><h5>Last Name: </h5></td>
        <td><input type="text" name="last_name" id="last_name_value" class="form-control" oninput="uppercaseEvent(event)" <?php echo "value = '".$result['t_last_name']."'";?> required></td>
      </tr>
      <tr>
-       <td class="table-spacing"><h4>First Name: </h4></td>
+       <td class="table-spacing"><h5>First Name: </h5></td>
        <td><input type="text" name="first_name" id="first_name_value" class="form-control" oninput="uppercaseEvent(event)" <?php echo "value = '".$result['t_first_name']."'";?> required></td>
      </tr>
      <tr>
-       <td class="table-spacing"><h4>Middle Name: </h4></td>
+       <td class="table-spacing"><h5>Middle Name: </h5></td>
        <td><input type="text" name="middle_name" id="middle_name_value" class="form-control" oninput="uppercaseEvent(event)" <?php echo "value = '".$result['t_middle_name']."'";?> required></td>
      </tr>
      <tr>
-       <td class="table-spacing"><h4>Contact Number: </h4></td>
+       <td class="table-spacing"><h5>Contact Number: </h5></td>
        <td><input type="text" name="contact_number" class="form-control" <?php echo "value = '".$result['t_contact_number']."'";?>  required></td>
      </tr>
      <tr>
-       <td class="table-spacing"><h4>Email Address: </h4></td>
+       <td class="table-spacing"><h5>Email Address: </h5></td>
        <td><input type="text" name="email_address" class="form-control" <?php echo "value = '".$result['t_email_adddress']."'";?> required></td>
      </tr>
      <tr>
-       <td class="table-spacing"><h4>Grade Level: </h4></td>
+       <td class="table-spacing"><h5>Grade Level: </h5></td>
        <td><input type="text" name="grade_level_value" onkeyup="section_data_value()" id="grade_level_value" class="form-control" <?php echo "value = '".$result['t_grade_level']."'";?> required></td>
      </tr>
      <tr>
-       <td class="table-spacing"><h4>Section: </h4></td>
+       <td class="table-spacing"><h5>Section: </h5></td>
        <td><input type="text" name="section" id="section_value" class="form-control" <?php echo "value = '".$result['t_section']."'";?> required></td>
      </tr>
       <tr>
-       <td class="table-spacing"><h4>New Username: </h4></td>
+       <td class="table-spacing"><h5>New Username: </h5></td>
        <td><input type="text" name="new_username" class="form-control" required></td>
      </tr>
      <tr>
-       <td class="table-spacing"><h4>New Password: </h4></td>
+       <td class="table-spacing"><h5>New Password: </h5></td>
        <td><input type="password" name="new_password" id="password_login" class="form-control" required></td>
      </tr>
      <tr>

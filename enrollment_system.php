@@ -40,9 +40,11 @@
               <option value="FEMALE">Female</option>
     </select>
     <input type="hidden" name="gender_type_result" id="gender_type_result" oninput="uppercaseEvent(event)">
-    <input type="text" name="age" placeholder="Age" id="age_value" readonly/>
     <label for="date_of_birth" class="fs-subtitle" id="date_value">Date Of Birth</label>
     <input type="date" name="date_of_birth" id="date_of_birth" placeholder="Date Of Birth" onchange="age_find()"/>
+    <label for="age_value" class="fs-subtitle" id="age_label" style="display:none;">Age</label>
+    <input type="text" name="age" placeholder="Age" id="age_value" readonly style="display:none;" />
+    
     <input type="text" name="place_of_birth" placeholder="Place of Birth" oninput="uppercaseEvent(event)">
     <input type="button" name="previous" class="cancel action-button" value="Cancel" />
     <input type="button" name="next" class="next action-button" value="Next" />
@@ -124,6 +126,7 @@
     document.getElementById("grade_level_result").value = x;
   }
   function age_find(){
+    var age_value_variable = document.getElementById("age_value");
     var mydate = document.getElementById('date_of_birth').value;
     var now =new Date();                            //getting current date
     var currentY= now.getFullYear();                //extracting year from the date
@@ -138,7 +141,16 @@
     var ageM =Math.abs(currentM- prevM);          //converting any negative value to positive
       
     var res = ageY;
-    document.getElementById("age_value").value = res;
+    age_value_variable.value = res;
+    if (Number.isNaN(res)) {
+      age_label.style.display = "none";
+      age_value_variable.style.display = "none";
+    }else{
+      age_value_variable.style.display = "block";
+      age_label.style.display = "block";
+    }
   }
+    
+  
 </script>
 </html>

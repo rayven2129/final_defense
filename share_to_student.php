@@ -70,13 +70,13 @@ $fetch_data = $fetch_query_sources->fetch_array();
         </div>
       </nav>
       <br><br><br><br><br>
-    <div class="container  content-navigation-grades" style="width:500px; box-shadow: 0 0 20px 1px #000000; height: 250px;">
+    <div class="container  content-navigation-grades" style="width:500px; box-shadow: 0 0 20px 1px #000000; height: 350px;">
       <form action="" method="POST">
     	<table style="margin: 60px;">
       	<tr>
        <td style="padding: 6px 12px;"><h5>Grade period: </h5></td>
        <td>
-       	<select id="grading_period" class="form-control btn btn-design" onchange="grading_period_value()">
+       	<select id="grading_period" class="form-control btn btn-design" onchange="grading_period_value()" required>
               <option>Select Option</option>
               <option value="FIRST">First Quarter</option>
               <option value="SECOND">Second Quarter</option>
@@ -89,7 +89,19 @@ $fetch_data = $fetch_query_sources->fetch_array();
        </td>
       <tr>
         <td style="padding: 6px 12px;"><h5>School Year</h5></td>
-        <td><input type="text" name="school_year" class="form-control"></td>
+        <td><input list="sy" name="school_year" class="form-control" required></td>
+        <datalist id="sy">
+          <option value="2020-2021">
+          <option value="2021-2022">
+          <option value="2022-2023">
+          <option value="2024-2025">
+          <option value="2025-2026">
+          <option value="2026-2027">
+          <option value="2027-2028">
+          <option value="2028-2029">
+          <option value="2029-2030">
+          <option value="2031-2032">
+        </datalist>
       </tr>
      </tr>
      <tr>
@@ -102,6 +114,7 @@ $fetch_data = $fetch_query_sources->fetch_array();
      </tr>
     </table>
     </form>
+
 </div>
 </div>
 </body>
@@ -110,31 +123,36 @@ $fetch_data = $fetch_query_sources->fetch_array();
 <?php
 if (isset($_POST['submit'])) {
 	$grading_period_result = $_POST['grading_period_result'];
-	$last_name = $fetch_data['last_name'];
-	$grade_level =$fetch_data['grade_level'];
-	$first_name = $fetch_data['first_name'];
-	$math = $fetch_data['math'];
-	$science = $fetch_data['science'];
-	$ap = $fetch_data['ap'];
-	$filipino = $fetch_data['filipino'];
-	$english = $fetch_data['english'];
-	$pe = $fetch_data['pe'];
-	$health = $fetch_data['health'];
-	$music = $fetch_data['music'];
-	$arts = $fetch_data['arts'];
-	$tle = $fetch_data['tle'];
-	$esp = $fetch_data['esp'];
-  $teachers_name = $teachers_fetch_data['t_last_name'].", ".$teachers_fetch_data['t_first_name'].", ".$teachers_fetch_data['t_middle_name'];
-  $teachers_grade_and_section = $teachers_fetch_data['t_section'];
-  $school_year = $_POST['school_year'];
-	$statement = "INSERT INTO grade_subject_export(id_grades,grade_level,grading,last_name,first_name,math,science,ap,filipino,english,pe,health,music,arts,tle,esp,teachers_name,section,school_year) VALUES ((SELECT student_id from enrollment_system WHERE last_name = '$last_name' AND first_name = '$first_name'),'$grade_level', '$grading_period_result','$last_name','$first_name','$math','$science', '$ap', '$filipino','$english','$pe','$health','$music','$arts', '$tle','$esp','$teachers_name','$teachers_grade_and_section','$school_year')";
-	  if ($conn->query($statement) == TRUE) {
-	    echo "<script>alert('Share Data sucessfully!');</script>";
-	    echo "<script>window.location.assign('grading_system.php');</script>";
-	  }else{
-	    echo "<script>alert('Share data failed!');</script>";
-	    echo "<script>window.location.assign('grading_system.php');</script>";
-	  }
+  if ($grading_period_result == "") {
+    echo "<script>alert('Please Insert Grade Quarter!');</script>";
+  }else{
+    $last_name = $fetch_data['last_name'];
+    $grade_level =$fetch_data['grade_level'];
+    $first_name = $fetch_data['first_name'];
+    $math = $fetch_data['math'];
+    $science = $fetch_data['science'];
+    $ap = $fetch_data['ap'];
+    $filipino = $fetch_data['filipino'];
+    $english = $fetch_data['english'];
+    $pe = $fetch_data['pe'];
+    $health = $fetch_data['health'];
+    $music = $fetch_data['music'];
+    $arts = $fetch_data['arts'];
+    $tle = $fetch_data['tle'];
+    $esp = $fetch_data['esp'];
+    $teachers_name = $teachers_fetch_data['t_last_name'].", ".$teachers_fetch_data['t_first_name']." ".$teachers_fetch_data['t_middle_name'];
+    $teachers_grade_and_section = $teachers_fetch_data['t_section'];
+    $school_year = $_POST['school_year'];
+    $statement = "INSERT INTO grade_subject_export(id_grades,grade_level,grading,last_name,first_name,math,science,ap,filipino,english,pe,health,music,arts,tle,esp,teachers_name,section,school_year) VALUES ((SELECT student_id from enrollment_system WHERE last_name = '$last_name' AND first_name = '$first_name'),'$grade_level', '$grading_period_result','$last_name','$first_name','$math','$science', '$ap', '$filipino','$english','$pe','$health','$music','$arts', '$tle','$esp','$teachers_name','$teachers_grade_and_section','$school_year')";
+        if ($conn->query($statement) == TRUE) {
+          echo "<script>alert('Share Data sucessfully!');</script>";
+          echo "<script>window.location.assign('grading_system.php');</script>";
+        }else{
+          echo "<script>alert('Share data failed!');</script>";
+          echo "<script>window.location.assign('grading_system.php');</script>";
+        }
+  }
+	
 }
 
 

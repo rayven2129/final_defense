@@ -25,7 +25,7 @@ $fetch = $conn->query($sql);
   <script type="text/javascript" src="js/global_function.js"></script>
 </head>
 <body>
-<div class="container">
+<div class="container-fluid">
       <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <div class="container-fluid">
           <a href="teacher_admin.php" class="navbar-brand">
@@ -65,7 +65,7 @@ $fetch = $conn->query($sql);
            </div>
         </div>
       </nav>
-  <div class="centered-div">
+  <div class="centered-div container-fluid">
     <table class="table table-hover table-responsive table-bordered">
       <thead>
         <tr class="table-background">

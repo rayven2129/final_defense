@@ -123,6 +123,7 @@ $fetch = $conn->query($sql);
         <tr>
           <th colspan="2"><h4 style="margin-left: 150px;">Add Grades for Mr./Ms. <span id="span_modal_header"></span></h4></th>
         </tr>
+        <tr><span>Type 0 if data is currently not available</span></tr>
         <tr>
           <td class="table-spacing">Grading Period</td>
           <td>
@@ -147,47 +148,47 @@ $fetch = $conn->query($sql);
         </tr>
         <tr>
           <td class="table-spacing"><p>Math Grade: </p></td>
-          <td><input type="text" name="math" id="math" class="form-control"></td>
+          <td><input type="text" name="math" id="math" class="form-control" required></td>
         </tr>
         <tr>
           <td class="table-spacing"><p>Science Grade: </p></td>
-          <td><input type="text" name="science" id="science" class="form-control" data-toggle="modal" data-target="#subject"></td>
+          <td><input type="text" name="science" id="science" class="form-control" data-toggle="modal" data-target="#subject" required></td>
         </tr>
         <tr>
           <td class="table-spacing"><p>Araling Panlipunan Grade: </p></td>
-          <td><input type="text" name="ap" id="ap" class="form-control" data-toggle="modal" data-target="#subject"></td>
+          <td><input type="text" name="ap" id="ap" class="form-control" data-toggle="modal" data-target="#subject" required></td>
         </tr>
         <tr>
           <td class="table-spacing"><p>Filipino Grade: </p></td>
-          <td><input type="text" name="filipino" id="filipino" class="form-control" data-toggle="modal" data-target="#subject"></td>
+          <td><input type="text" name="filipino" id="filipino" class="form-control" data-toggle="modal" data-target="#subject" required></td>
         </tr>
         <tr>
           <td class="table-spacing"><p>English Final Grade: </p></td>
-          <td><input type="text" name="english" id="english" class="form-control" data-toggle="modal" data-target="#subject"></td>
+          <td><input type="text" name="english" id="english" class="form-control" data-toggle="modal" data-target="#subject" required></td>
         </tr>
           <tr>
           <td class="table-spacing"><p>Technology Livelihood and Education Grade: </p></td>
-          <td><input type="text" name="tle" id="tle" class="form-control" data-toggle="modal" data-target="#subject"></td>
+          <td><input type="text" name="tle" id="tle" class="form-control" data-toggle="modal" data-target="#subject" required></td>
         </tr>
          <tr>
           <td class="table-spacing"><p>Edukasyon sa Pagpapakatao Grade: </p></td>
-          <td><input type="text" name="esp" id="esp" class="form-control" data-toggle="modal" data-target="#subject"></td>
+          <td><input type="text" name="esp" id="esp" class="form-control" data-toggle="modal" data-target="#subject" required></td>
         </tr>
         <tr>
           <td class="table-spacing"><p>Music Final Grade: </p></td>
-          <td><input type="text" name="music" id="music" class="form-control" data-toggle="modal" data-target="#subject"></td>
+          <td><input type="text" name="music" id="music" class="form-control" data-toggle="modal" data-target="#subject" required></td>
         </tr>
         <tr>
           <td class="table-spacing"><p>Arts Final Grade: </p></td>
-          <td><input type="text" name="arts" id="arts" class="form-control" data-toggle="modal" data-target="#subject"></td>
+          <td><input type="text" name="arts" id="arts" class="form-control" data-toggle="modal" data-target="#subject" required></td>
         </tr>
         <tr>
           <td class="table-spacing"><p>Physical Education Grade: </p></td>
-          <td><input type="text" name="pe" id="pe" class="form-control" data-toggle="modal" data-target="#subject"></td>
+          <td><input type="text" name="pe" id="pe" class="form-control" data-toggle="modal" data-target="#subject" required></td>
         </tr>
         <tr>
           <td class="table-spacing"><p>Health Final Grade: </p></td>
-          <td><input type="text" name="health" id="health" class="form-control" data-toggle="modal" data-target="#subject"></td>
+          <td><input type="text" name="health" id="health" class="form-control" data-toggle="modal" data-target="#subject" required></td>
         </tr>
         <tr>
           <td></td>
