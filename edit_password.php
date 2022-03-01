@@ -11,6 +11,7 @@ $sql = "SELECT * FROM enrollment_system WHERE username = '$username'";
 $result = $conn->query($sql);
 $fetch_id = $result->fetch_array();
 $stud_id = $fetch_id['student_id'];
+$fetch_password_user = $fetch_id['password_user'];
 
 ?>
 <!DOCTYPE html>
@@ -20,6 +21,17 @@ $stud_id = $fetch_id['student_id'];
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="images/favicon.png">
+  <!-- JavaScript -->
+  <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+  <!-- Default theme -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+  <!-- Semantic UI theme -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
+  <!-- Bootstrap theme -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
@@ -27,6 +39,23 @@ $stud_id = $fetch_id['student_id'];
   <link rel="stylesheet" type="text/css" href="css/teachers_admin.css">
   <script src="https://kit.fontawesome.com/f9a76d52b7.js" crossorigin="anonymous"></script>
 </head>
+<?php
+echo "<script>var stud_id = '".$stud_id."'</script>";
+echo "<script>var password_user = '".$fetch_password_user."'</script>";
+
+?>
+<script type="text/javascript">
+  function edit_submit_password_check_field(){
+    var usr = document.querySelector('#new_username').value;
+    var oldpwd = document.querySelector('#old_password').value;
+    var newpwd = document.querySelector('#password_login').value;
+    if (usr == "" || oldpwd == "" || newpwd == "") {
+      alertify.alert('Invalid','Fields Must be not Empty!!');
+    }else{
+      edit_submit_password(usr,oldpwd,newpwd,stud_id,password_user);
+    }
+  }
+</script>
 <body>
 <div class="container">
        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -67,11 +96,11 @@ $stud_id = $fetch_id['student_id'];
     <table class="table-margin">
       <tr>
        <td class="table-spacing"><h4>New Username: </h4></td>
-       <td><input type="text" name="new_username" class="form-control" required></td>
+       <td><input type="text" name="new_username" id="new_username" class="form-control" required></td>
      </tr>
      <tr>
        <td class="table-spacing"><h4>Old Password: </h4></td>
-       <td><input type="password" name="old_password" class="form-control" required></td>
+       <td><input type="password" name="old_password" id="old_password" class="form-control" required></td>
      </tr>
      <tr>
        <td class="table-spacing"><h4>New Password: </h4></td>
@@ -85,7 +114,7 @@ $stud_id = $fetch_id['student_id'];
         </tr>
      <tr>
        <td></td>
-       <td class="table-spacing"><button type="submit" name="submit" class="btn btn-success form-control">Change Password</button></td>
+       <td class="table-spacing"><button type="button" class="btn btn-success form-control" onclick="edit_submit_password_check_field()">Change Password</button></td>
      </tr>
      <tr>
        <td></td>
@@ -97,35 +126,41 @@ $stud_id = $fetch_id['student_id'];
 </div>
 <script type="text/javascript">
   function check_function(){
+    var y = document.querySelector("#old_password");
     var x = document.querySelector("#password_login");
-    if (x.type == "password") {
-      x.type = "text"
+    if (x.type == "password" && y.type == "password") {
+      x.type = "text";
+      y.type = "text";
     }else{
-      x.type = "password"
+      x.type = "password";
+      y.type = "password";
+    }
+  }
+
+  function edit_submit_password(username,old_password,new_password,stud_id,password_user){
+    var ajax = new XMLHttpRequest();
+    ajax.open("POST","edit_password_data.php?new_username="+username+"&old_password="+old_password+"&new_password="+new_password+"&stud_id="+stud_id+"&password_user="+password_user);
+    ajax.send();
+    ajax.onreadystatechange = function(){
+      if (ajax.readyState == 4 && ajax.status == 200) {
+          if (this.response == 200) {
+            alertify.alert('Success','Thank You! Your Credentials has been changed!. You will log out in the system!',function (){
+              alertify.set('notifier','position','top-center');
+              alertify.success("Successfully change credentials");
+              setTimeout(function(){
+                window.location.assign("index.php");
+              },3000);
+              
+            });
+          }else if(this.response == 201){
+            alertify.alert('Failed',"Sorry you input wrong credentials, please try again!");
+          }else if (this.response == 202){
+            alertify.alert('Incorrect Old Password','Uhm it seems that you input wrong crendentials in old password huh?, Please input valid old password!');
+          }
+      }
     }
   }
 </script>
 </body>
 </html>
-<?php
-  if (isset($_POST['submit'])) {
-      $new_username = $_POST['new_username'];
-      $old_password = $_POST['old_password'];
-      $new_password = $_POST['new_password'];
-        if ($old_password != $fetch_id['password_user']) {
-          echo "<script>alert('Incorrect old password');</script>";
-          echo $stud_id;
-        }else{
-          $change_password = "UPDATE enrollment_system SET username = '$new_username', password_user = '$new_password'  WHERE student_id = '$stud_id'";
-            if ($conn->query($change_password) == TRUE) {
-                echo "<script>alert('Change password Successfully!!');</script>";
-                echo "<script>window.location.assign('logout.php');</script>";
-            }else{
-                echo "<script>alert('Change password Failed!!');</script>";
-                
-            }
-        }
-  }
-
-?>
 

@@ -5,6 +5,17 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" href="images/favicon.png">
+	<!-- JavaScript -->
+	<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+	<!-- Default theme -->
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+	<!-- Semantic UI theme -->
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
+	<!-- Bootstrap theme -->
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<!--<link rel="stylesheet" type="text/css" href="../bootstrap-5.1.3/css/bootstrap.min.css">-->
@@ -54,12 +65,6 @@
 				<tr>
 					<td></td>
 					<td>
-						<span style="background-color: red; display: none; font-weight: bolder;" class="form-control text-center" id="error_login">Wrong Username or Password</span>
-					</td>
-				</tr>
-				<tr>
-					<td></td>
-					<td>
 						<button type="button" onclick="ajaxFunction()" class="form-control btn-success">Login</button>
 						
 					</td>
@@ -94,11 +99,8 @@
 			if (this.readyState == 4 && this.status == 200) {
 
 				if (this.response == 201) {
-					var err = document.getElementById("error_login");
-					err.style.display = "block";
-					setTimeout(function (){
-					err.style.display = "none";
-					}, 1500);
+					alertify.set('notifier','position','top-center');
+					alertify.error('Wrong Username or Password')
 				}else if (this.response == 200){
 					window.location.assign('student_grade_viewing.php');
 				}
