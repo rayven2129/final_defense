@@ -20,6 +20,16 @@ $fetch_data = $fetch_query_sources->fetch_array();
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="images/favicon.png">
+  <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+  <!-- Default theme -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+  <!-- Semantic UI theme -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
+  <!-- Bootstrap theme -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
@@ -27,6 +37,9 @@ $fetch_data = $fetch_query_sources->fetch_array();
   <link rel="stylesheet" type="text/css" href="css/teachers_admin.css">
   <script type="text/javascript" src="js/global_function.js"></script>
   <script src="https://kit.fontawesome.com/f9a76d52b7.js" crossorigin="anonymous"></script>
+  <script type="text/javascript">
+    alertify.set('notifier','position','top-center');
+  </script>
 </head>
 <body>
 <div class="container">
@@ -124,7 +137,7 @@ $fetch_data = $fetch_query_sources->fetch_array();
 if (isset($_POST['submit'])) {
 	$grading_period_result = $_POST['grading_period_result'];
   if ($grading_period_result == "") {
-    echo "<script>alert('Please Insert Grade Quarter!');</script>";
+    echo "<script>alertify.warning('Please Insert Grade Quarter!');</script>";
   }else{
     $last_name = $fetch_data['last_name'];
     $grade_level =$fetch_data['grade_level'];
@@ -145,11 +158,15 @@ if (isset($_POST['submit'])) {
     $school_year = $_POST['school_year'];
     $statement = "INSERT INTO grade_subject_export(id_grades,grade_level,grading,last_name,first_name,math,science,ap,filipino,english,pe,health,music,arts,tle,esp,teachers_name,section,school_year) VALUES ((SELECT student_id from enrollment_system WHERE last_name = '$last_name' AND first_name = '$first_name'),'$grade_level', '$grading_period_result','$last_name','$first_name','$math','$science', '$ap', '$filipino','$english','$pe','$health','$music','$arts', '$tle','$esp','$teachers_name','$teachers_grade_and_section','$school_year')";
         if ($conn->query($statement) == TRUE) {
-          echo "<script>alert('Share Data sucessfully!');</script>";
-          echo "<script>window.location.assign('grading_system.php');</script>";
+          echo "<script>alertify.success('Share Data sucessfully!');</script>";
+          echo "<script>setTimeout(function(){
+            window.location.assign('grading_system.php');
+          },3000);</script>";
         }else{
-          echo "<script>alert('Share data failed!');</script>";
-          echo "<script>window.location.assign('grading_system.php');</script>";
+          echo "<script>alertify.error('Share data failed!');</script>";
+          echo "<script>setTimeout(function(){
+            window.location.assign('grading_system.php');
+          },3000);</script>";
         }
   }
 	

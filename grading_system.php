@@ -4,9 +4,10 @@ if ($_SESSION['username'] == null && $_SESSION['grade_level'] == null) {
   echo "<script>alert('Please Login First');</script>";
   echo "<script>window.location.assign('index.php');</script>";
 }
+$section = $_SESSION['section'];
 $grade_level = $_SESSION['grade_level'];
 include("connect.php");
-$sql = "SELECT * FROM grade_subject WHERE grade_level = '$grade_level'";
+$sql = "SELECT * FROM grade_subject WHERE grade_level = '$grade_level' AND section = '$section'";
 $fetch = $conn->query($sql);
 ?>
 <!DOCTYPE html>

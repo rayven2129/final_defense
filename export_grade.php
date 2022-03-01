@@ -5,8 +5,9 @@ if ($_SESSION['username'] == null) {
   echo "<script>window.location.assign('index.php');</script>";
 }
 $grade_level = $_SESSION['grade_level'];
+$section = $_SESSION['section'];
 include("connect.php");
-$sql = "SELECT * FROM grade_subject WHERE grade_level = '$grade_level'";
+$sql = "SELECT * FROM grade_subject WHERE grade_level = '$grade_level' AND section = '$section'";
 $fetch = $conn->query($sql);
 ?>
 <!DOCTYPE html>

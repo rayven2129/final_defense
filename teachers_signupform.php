@@ -103,7 +103,7 @@
      var fname = document.getElementById("first_name").value;
      var mname = document.getElementById("middle_name").value;
      var grade_level = document.getElementById("grade_level_result").value;
-     document.getElementById("section_value").value = "G"+grade_level+" - "+fname.charAt(0)+mname.charAt(0)+lname.charAt(0)
+     document.getElementById("section_value").value = "G"+grade_level+"-"+fname.charAt(0)+mname.charAt(0)+lname.charAt(0)
   }
   document.querySelector(".cancel").onclick = function(){
   	window.location.assign("teachers_index.php");

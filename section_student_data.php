@@ -49,26 +49,11 @@ $json_d = json_decode($json,true);
       			echo "<td>".$row['last_name']."</td>";
       			echo "<td>".$row['first_name']."</td>";
       			echo "<td>".$row['middle_name']."</td>";
-      			echo "<td>".$row['gender']."</td>";
-          		echo "<td>".$row['age']."</td>";
-      			echo "<td>".$row['contact_number']."</td>";
-      			echo "<td>";
-      			echo "<form>";
-          		echo "<select id='section_value' onchange='changeValue()'>";
-          		echo "<option select value=''>Please Select Option</option>";
-          			foreach ($json_d as $key => $value) {
-				           echo "<option value='".$value."'>".$value."</option>";
-          					}
-          		echo "</select>";
-          		echo "<input type='hidden' id='section_value_res'/>";
-          		echo "<input type='hidden' id='valueLrn' value='".$row['lrn']."'>";
-          		echo "</form>";
-          		echo "</td>";
+      			echo "<td>".$row['section']."</td>";
       			echo "</tr>";
       			}
       	?>
       	
-
 </body>
 
 </html>

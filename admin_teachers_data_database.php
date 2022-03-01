@@ -4,22 +4,14 @@ $select_grade_level = intval($_REQUEST['select']);
 $sql = "";
 $sql_add_teacher = "";
 	if ($select_grade_level == "") {
-		$sql = "SELECT * FROM enrollment_system";
+		//$sql = "SELECT * FROM enrollment_system";
 		$sql_add_teacher = "SELECT * FROM teachers_account";
 	}else{
-		$sql = "SELECT * FROM enrollment_system WHERE grade_level = '$select_grade_level'";
+		//$sql = "SELECT * FROM enrollment_system WHERE grade_level = '$select_grade_level'";
 		$sql_add_teacher = "SELECT * FROM teachers_account WHERE t_grade_level = '$select_grade_level'";
 	}
 
-$fetch_teachers_section = $conn->query($sql_add_teacher);
-$fetch = $conn->query($sql);
-$emarray = array();
-while($res = $fetch_teachers_section->fetch_assoc()){
-$emarray[] = $res['t_section'];  
-}
-$json = json_encode($emarray);
-$json_d = json_decode($json,true);
-
+$fetch = $conn->query($sql_add_teacher);
 ?>
 <!DOCTYPE html>
 <html>
@@ -44,25 +36,14 @@ $json_d = json_decode($json,true);
 	<?php
       	while ($row = $fetch->fetch_array()) {
       			echo "<tr class='table-background-content'>";
-      			echo "<td>".$row['lrn']."</td>";
-          		echo "<td>".$row['grade_level']."</td>";
-      			echo "<td>".$row['last_name']."</td>";
-      			echo "<td>".$row['first_name']."</td>";
-      			echo "<td>".$row['middle_name']."</td>";
-      			echo "<td>".$row['gender']."</td>";
-          		echo "<td>".$row['age']."</td>";
-      			echo "<td>".$row['contact_number']."</td>";
-      			echo "<td>";
-      			echo "<form>";
-          		echo "<select id='section_value' onchange='changeValue()'>";
-          		echo "<option select value=''>Please Select Option</option>";
-          			foreach ($json_d as $key => $value) {
-				           echo "<option value='".$value."'>".$value."</option>";
-          					}
-          		echo "</select>";
-          		echo "<input type='hidden' id='section_value_res'/>";
-          		echo "<input type='hidden' id='valueLrn' value='".$row['lrn']."'>";
-          		echo "</form>";
+      			echo "<td>".$row['t_grade_level']."</td>";
+          		echo "<td>".$row['t_section']."</td>";
+      			echo "<td>".$row['t_last_name']."</td>";
+      			echo "<td>".$row['t_first_name']."</td>";
+      			echo "<td>".$row['t_middle_name']."</td>";
+      			echo "<td>".$row['t_contact_number']."</td>";
+          		echo "<td>".$row['t_email_adddress']."</td>";
+      			echo "<td><img src='server_files/".$row['images_files']."' width=150 height=100></td>";
           		echo "</td>";
       			echo "</tr>";
       			}

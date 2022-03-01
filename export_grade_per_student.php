@@ -2,7 +2,7 @@
 session_start();
 if ($_SESSION['username'] == null) {
   echo "<script>alert('Please Login First');</script>";
-  echo "<script>window.location.assign('index.php');</script>";
+  echo "<script>window.location.assign('teachers_index.php');</script>";
 }
 include("connect.php");
 $sql = "SELECT * FROM grade_subject WHERE grading = '$_GET[id]'";

@@ -12,8 +12,10 @@ if (($username == '' && $password == '')) {
 }else{
 	if ($username == isset($fetch['t_username']) && $password == isset($fetch['t_password'])){
 		$grade_level = $fetch['t_grade_level'];
+		$section = $fetch['t_section'];
 		$_SESSION['username'] = $username;
 		$_SESSION['grade_level'] = $grade_level;
+		$_SESSION['section'] = $section;
 		echo 200;
 	}else{
 		echo 201;

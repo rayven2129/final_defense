@@ -38,40 +38,10 @@ if ($_SESSION['username'] == null) {
           document.querySelector("#data_result").innerHTML = this.response;
         }
       }
-      xhttp.open("GET", "admin_dashboard_data.php?select="+val,true);
+      xhttp.open("GET", "admin_teachers_data_database.php?select="+val,true);
       xhttp.send();
     }
 
-    function changeValue(){
-    var x = document.getElementById('section_value').value;
-    document.getElementById('section_value_res').value = x;
-    var y = document.getElementById('valueLrn').value;
-    submitSection(x,y);
-    }
-
-    function submitSection(val1,val2){
-      var ajx = new XMLHttpRequest();
-      var appen = new URLSearchParams();
-      alertify.set('notifier','position','top-center');
-      appen.append('section_value',val1);
-      appen.append('lrn',val2);
-      var str = appen.toString();
-      ajx.open("GET","updateSection.php?"+str,true);
-      ajx.send();
-      ajx.onreadystatechange = function(){
-        if (ajx.readyState == 4 && ajx.status == 200) {
-          if (this.response == 200) {
-            alertify.success("Section successfully added in the students!!");
-            alertify.message("See Changes in Student Section-Data in Navigation Menu");
-          }else if(this.response == 201){
-            alertify.error("Section can't be added in the students!!");
-          }else{
-
-          }
-        }
-      }
-      
-    }
 
     </script>
 </head>
@@ -93,7 +63,7 @@ if ($_SESSION['username'] == null) {
               <div class="collapse navbar-collapse" id="mynavbar">
                   <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                      <a href="" class="nav-link"><i class="fas fa-user"></i> Student Data</a>
+                      <a href="admin_dashboard.php" class="nav-link"><i class="fas fa-user"></i> Student Data</a>
                     </li>
                     <li class="nav-item">
                       <a href="section_data_student.php" class="nav-link"><i class="far fa-calendar"></i> Student Section-Data</a>
@@ -137,15 +107,14 @@ if ($_SESSION['username'] == null) {
     <table class="table table-hover table-striped table-responsive table-bordered table-design box-shadow-design">
       <thead>
         <tr class="table-background">
-          <th>LRN Number</th>
-          <th>Grade Level</th>
+          <th>Grade Level to Instruct</th>
+          <th>Section</th>
           <th>Last Name</th>
           <th>First Name</th>
           <th>Middle Name</th>
-          <th>Gender</th>
-          <th>Age</th>
           <th>Contact Number</th>
-          <th>Add Section</th>
+          <th>Email Address</th>
+          <th>Valid Photo</th>
         </tr>
       </thead>  
       <tbody id="data_result"></tbody>
