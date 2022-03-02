@@ -20,6 +20,11 @@ $t_id = $result['userid'];
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="images/favicon.png">
+  <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
@@ -135,7 +140,7 @@ $t_id = $result['userid'];
     var fname = document.querySelector("#first_name_value").value;
     var mname = document.querySelector("#middle_name_value").value;
     var grade_level = document.querySelector("#grade_level_value").value;
-    document.querySelector("#section_value").value = "G"+grade_level+" - "+fname.charAt(0)+mname.charAt(0)+lname.charAt(0);
+    document.querySelector("#section_value").value = "G"+grade_level+"-"+fname.charAt(0)+mname.charAt(0)+lname.charAt(0);
     
   }
 </script>
@@ -166,10 +171,12 @@ $new_password = $_POST['new_password'];
 $sql_statement = "UPDATE teachers_account SET t_last_name  = '$last_name', t_first_name = '$first_name',    t_middle_name = '$middle_name', t_contact_number  = '$contact_number', t_email_adddress = '$email_address', t_grade_level = '$grade_level_var', t_section = '$section ',t_username = '$new_username', t_password = '$new_password ' WHERE userId = '$t_id'";
 
 if ($conn->query($sql_statement) == TRUE) {
-  echo "<script>alert('Change password Successfully!!');</script>";
-  echo "<script>window.location.assign('tlogout.php');</script>";
+  echo "<script>alertify.alert('Change Data Successfully','Your Data that you input is successfully Edited. You will logout in a System, Thank You!!',function(){
+    window.location.assign('tlogout.php');
+  });</script>";
 }else{
-  echo "<script>alert('Change password Failed!!');</script>";
+
+  echo "<script>alertify.alert('Change Password Failed','Your data that you input is not executed, maybe you have misconfiguration in editing your data?, Please Try Again!!');</script>";
 }
 
 }

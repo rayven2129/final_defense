@@ -49,6 +49,9 @@ $guardian_relation_to_student = $_POST['guardian_relation_to_student'];
 $username = $_POST['username'];
 $password = $_POST['password'];
 $student_type = $_POST['student_type'];
+
+
+
 $search_duplicate = "SELECT username FROM enrollment_system WHERE username = '$username'";
 $query = $conn->query($search_duplicate);
 $fetch = $query->fetch_array();
@@ -81,7 +84,6 @@ $fetch = $query->fetch_array();
 			}
 
 	}
-
 
 
 ?>

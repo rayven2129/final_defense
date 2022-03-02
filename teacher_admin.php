@@ -26,6 +26,11 @@ $fetch = $conn->query($sql);
   <script src="https://kit.fontawesome.com/f9a76d52b7.js" crossorigin="anonymous"></script>
   <script type="text/javascript" src="js/global_function.js"></script>
 </head>
+<?php
+echo "<script>var g_level='".$grade_level."'</script>";
+echo "<script>var g_section='".$section."'</script>";
+
+?>
 <body>
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <div class="container-fluid">
@@ -69,11 +74,11 @@ $fetch = $conn->query($sql);
 <div class="container">
     <div class="container">
       <div class="content"><br>
-       <form action="search_teacher_admin.php" method="POST" target="_blank">
+       <form action="" method="POST">
       <table class="search_content_parent">
         <tr>
-          <td><input type="search" name="search_data" class="form-control" oninput="uppercaseEvent(event)"></td>
-          <td><button type="submit" name="submit" class="btn btn-primary"><i class="fas fa-search"></i></button></td>
+          <td><input type="search" name="search_data" id="search_data" class="form-control" oninput="uppercaseEvent(event)"></td>
+          <td><button type="button" name="submit" class="btn btn-primary" onclick="searchStudent()"><i class="fas fa-search"></i></button></td>
         </tr>
       </table>
       </form>
@@ -91,7 +96,7 @@ $fetch = $conn->query($sql);
           <th>Contact Number</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="data_set">
       	<?php
       		while ($row = $fetch->fetch_array()) {
       		echo "<tr class='table-background-content'>";
@@ -228,6 +233,27 @@ $fetch = $conn->query($sql);
     };
    xhttp.open("GET", "request.php?request="+lrn_var, true);
    xhttp.send();
+  }
+  document.getElementById("search_data").onkeyup = function(){
+    searchStudent();
+  }
+  document.getElementById("search_data").onchange = function(){
+    searchStudent();
+  }
+  function searchStudent(){
+    var ajax = new XMLHttpRequest();
+    var url = new URLSearchParams();
+    var s = document.getElementById('search_data').value;
+    url.append("grade_level",g_level);
+    url.append("section",g_section);
+    url.append("search_data",s);
+    ajax.open("POST","search_teacher_admin.php?"+url.toString(),true);
+    ajax.send()
+    ajax.onreadystatechange = function(){
+      if (ajax.readyState == 4 && ajax.status == 200) {
+        document.querySelector("#data_set").innerHTML = this.response;
+      }
+    }
   }
   function propercase(str){
     str = str.toLowerCase().split(' ');

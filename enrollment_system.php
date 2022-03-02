@@ -4,6 +4,11 @@
   <meta charset="UTF-8">
   <title>Enrollment Form</title>
   <link rel="icon" href="images/favicon.png">
+  <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/rayven2129/cdnrvd/form_style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
@@ -31,9 +36,9 @@
     </select>
     <input type="hidden" name="student_type" id="student_type_value">
     
-    <input type="text" name="last_name" placeholder="Last Name" oninput="uppercaseEvent(event)"/>
-    <input type="text" name="first_name" placeholder="First Name" oninput="uppercaseEvent(event)" />
-    <input type="text" name="middle_name" placeholder="Middle Name" oninput="uppercaseEvent(event)" />
+    <input type="text" name="last_name" id="last_name" placeholder="Last Name" oninput="uppercaseEvent(event)"/>
+    <input type="text" name="first_name" id="first_name" placeholder="First Name" oninput="uppercaseEvent(event)" />
+    <input type="text" name="middle_name" id="middle_name" placeholder="Middle Name" oninput="uppercaseEvent(event)" />
     <span class="fs-subtitle">    Gender: </span><select id="gender_type_source" onchange="gender_type_function()">
               <option>Please Select Option</option>
               <option value="MALE">Male</option>
@@ -47,7 +52,7 @@
     
     <input type="text" name="place_of_birth" placeholder="Place of Birth" oninput="uppercaseEvent(event)">
     <input type="button" name="previous" class="cancel action-button" value="Cancel" />
-    <input type="button" name="next" class="next action-button" value="Next" />
+    <input type="button" name="next" id="next_1" class="next action-button" value="Next"/>
   </fieldset>
    <fieldset>
     <h2 class="fs-title">Additional Personal Information</h2>
@@ -102,6 +107,7 @@
 <script src="https://cdn.jsdelivr.net/gh/rayven2129/cdnrvd/form.js"></script>
 </body>
 <script type="text/javascript">
+
   function checkPassword(){
     var x = document.getElementById("password_login");
       if (x.type == "password") {
@@ -142,14 +148,21 @@
       
     var res = ageY;
     age_value_variable.value = res;
-    if (Number.isNaN(res)) {
-      age_label.style.display = "none";
-      age_value_variable.style.display = "none";
+    if(res <=12){
+      alertify.alert("You are not eligible to create account in our system. You are underaged!!",function(){
+        document.getElementById("next_1").disabled = true;
+      })
     }else{
-      age_value_variable.style.display = "block";
-      age_label.style.display = "block";
+      document.getElementById("next_1").disabled = false;
+      if (Number.isNaN(res)) {
+        age_label.style.display = "none";
+        age_value_variable.style.display = "none";
+      }else{
+        age_value_variable.style.display = "block";
+        age_label.style.display = "block";
+      }
     }
-  }
+    }
     
   
 </script>

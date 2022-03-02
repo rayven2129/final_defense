@@ -16,12 +16,18 @@ $row = $fetch->fetch_array();
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="images/favicon.png">
+  <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <link rel="stylesheet" type="text/css" href="css/teachers_admin.css">
   <script src="https://kit.fontawesome.com/f9a76d52b7.js" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="js/global_function.js"></script>
 </head>
 <body>
 <div class="container">
@@ -69,39 +75,44 @@ $row = $fetch->fetch_array();
       <table>
         <tr>
           <td class="table-spacing"><h4>Last Name:</h4></td>
-          <td><input type="text" name="last_name" class="form-control"<?php echo "value = '".$row['last_name']."'";      ?>></td>
+          <td><input type="text" name="last_name" class="form-control" oninput="uppercaseEvent(event)" <?php echo "value = '".$row['last_name']."'";      ?> required></td>
         </tr>
         <tr>
           <td class="table-spacing"><h4>First Name:</h4></td>
-          <td><input type="text" name="first_name" class="form-control"<?php echo "value = '".$row['first_name']."'";      ?>></td>
+          <td><input type="text" name="first_name" class="form-control" oninput="uppercaseEvent(event)" <?php echo "value = '".$row['first_name']."'";      ?> required></td>
         </tr>
         <tr>
           <td class="table-spacing"><h4>Middle Name:</h4></td>
-          <td><input type="text" name="middle_name" class="form-control"<?php echo "value = '".$row['middle_name']."'";      ?>></td>
+          <td><input type="text" name="middle_name" class="form-control" oninput="uppercaseEvent(event)" <?php echo "value = '".$row['middle_name']."'";      ?> required></td>
         </tr>
         <tr>
           <td class="table-spacing"><h4>Gender Name:</h4></td>
-          <td><input type="text" name="gender" class="form-control"<?php echo "value = '".$row['gender']."'";      ?>></td>
+          <td><select id="gender_type_source" class="form-select" onchange="gender_type_function()" required>
+              <option value="">Please Select Option</option>
+              <option value="MALE">Male</option>
+              <option value="FEMALE">Female</option>
+             </select>
+              <input type="hidden" name="gender" id="gender_type_result" oninput="uppercaseEvent(event)"></td>
         </tr>
         <tr>
           <td class="table-spacing"><h4>Date of Birth:</h4></td>
-          <td><input type="text" name="date_of_birth" id="date_of_birth_value" onclick="text_to_date()" class="form-control"<?php echo "value = '".$row['date_of_birth']."'";      ?>></td>
+          <td><input type="text" name="date_of_birth" id="date_of_birth_value" onclick="text_to_date()" class="form-control"<?php echo "value = '".$row['date_of_birth']."'";      ?> required></td>
         </tr>
         <tr>
           <td class="table-spacing"><h4>Address:</h4></td>
-          <td><input type="text" name="address" class="form-control"<?php echo "value = '".$row['address']."'";      ?>></td>
+          <td><input type="text" name="address" class="form-control" oninput="uppercaseEvent(event)" <?php echo "value = '".$row['address']."'";      ?> required></td>
         </tr>
         <tr>
           <td class="table-spacing"><h4>Contact Number:</h4></td>
-          <td><input type="text" name="contact_number" class="form-control"<?php echo "value = '".$row['contact_number']."'";      ?>></td>
+          <td><input type="text" name="contact_number" class="form-control"<?php echo "value = '".$row['contact_number']."'";      ?> required></td>
         </tr>
         <tr>
           <td class="table-spacing"><h4>Guardian Name:</h4></td>
-          <td><input type="text" name="guardian_name" class="form-control"<?php echo "value = '".$row['guardian_name']."'";      ?>></td>
+          <td><input type="text" name="guardian_name" class="form-control" oninput="uppercaseEvent(event)" <?php echo "value = '".$row['guardian_name']."'";      ?> required></td>
         </tr>
         <tr>
           <td class="table-spacing"><h4>Guardian Contact Number:</h4></td>
-          <td><input type="text" name="guardian_contact_number" class="form-control"<?php echo "value = '".$row['guardian_contact_number']."'";      ?>></td>
+          <td><input type="text" name="guardian_contact_number" class="form-control"<?php echo "value = '".$row['guardian_contact_number']."'";      ?> required></td>
         </tr>
         <tr>
           <td></td>
@@ -122,6 +133,10 @@ $row = $fetch->fetch_array();
   function text_to_date(){
     document.getElementById("date_of_birth_value").type = "date";
   }
+  function gender_type_function(){
+    var x = document.getElementById("gender_type_source").value;
+    document.getElementById("gender_type_result").value = x;
+  }
 </script>
 </html>
 <?php
@@ -138,20 +153,16 @@ $guardian_contact_number = $_POST['guardian_contact_number'];
 
   $sql_edit = "UPDATE enrollment_system set last_name = '$last_name', first_name = '$first_name ', middle_name = '$middle_name', gender = '$gender_type_result', date_of_birth = '$date_of_birth ', address = '$complete_address ', contact_number = '$contact_number', guardian_name = '$guardian_name', guardian_contact_number = '$guardian_contact_number ' where student_id ='$_GET[id]'";
   if ($conn->query($sql_edit)) {
-    echo "<script>alert('Edit Account Success!');</script>";
-    echo "<script>window.location.assign('edit_accounts.php');</script>";
+    echo "<script>alertify.alert('Edit Account Success','The data that you edited is successfully edited!! please click okay. Thank You!',function(){
+      window.location.assign('edit_accounts.php');
+    });</script>";
   }else{
-    echo "<script>alert('Edit Account Failed!');</script>";
-    echo "<script>window.location.assign('edit.php');</script>";
+    echo "<script>alertify.alert('Edit Account Failed!','Edit Account Failed!, maybe you have misconfiguration in editing data? Please Try Again!',function(){
+      window.location.assign('edit.php');
+    });</script>";
   }
 
 }
-
-
-
-
-
-
 
 ?>
 

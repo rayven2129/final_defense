@@ -25,6 +25,11 @@ $fetch = $conn->query($sql);
   <script src="https://kit.fontawesome.com/f9a76d52b7.js" crossorigin="anonymous"></script>
   <script type="text/javascript" src="js/global_function.js"></script>
 </head>
+<?php
+echo "<script>var g_level='".$grade_level."'</script>";
+echo "<script>var g_section='".$section."'</script>";
+
+?>
 <body>
 <div class="container">
       <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -67,11 +72,11 @@ $fetch = $conn->query($sql);
         </div>
       </nav>
     <div class="content">
-      <form action="search_grading_system.php" method="POST" target="_blank">
+      <form method="POST">
       <table class="search_content">
         <tr>
-          <td><input type="search" name="search_data" class="form-control" placeholder="Search...." oninput="uppercaseEvent(event)"></td>
-          <td><button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button></td>
+          <td><input type="search" name="search_data" id="search_data" class="form-control" placeholder="Search...." oninput="uppercaseEvent(event)"></td>
+          <td><button type="button" class="btn btn-primary" onclick="searchGrade()"><i class="fas fa-search"></i></button></td>
         </tr>
       </table>
       </form>
@@ -99,7 +104,7 @@ $fetch = $conn->query($sql);
           <th>SEND TO STUDENT</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="data_set">
       	<?php
       		while ($row = $fetch->fetch_array()) {
           $mapeh = intval(($row['music']+$row['arts']+$row['pe']+$row['health'])/4);
@@ -132,4 +137,28 @@ $fetch = $conn->query($sql);
 </div>
 </div>
 </body>
+<script type="text/javascript">
+  document.getElementById("search_data").onkeyup = function(){
+    searchGrade();
+  }
+  document.getElementById("search_data").onchange = function(){
+    searchGrade();
+  }
+  var ajax = new XMLHttpRequest();
+  var param = new URLSearchParams();
+  function searchGrade(){
+    var search = document.getElementById('search_data').value;
+    param.append("search_data",search);
+    param.append("grade_level",g_level);
+    param.append("section",g_section);
+    ajax.open("POST","search_grading_system.php?"+param.toString());
+    ajax.send();
+      ajax.onreadystatechange = function(){
+        if (ajax.readyState == 4 && ajax.status == 200) {
+          document.getElementById("data_set").innerHTML = this.response;
+        }
+      }
+
+  }
+</script>
 </html>
