@@ -80,11 +80,11 @@ if ($_SESSION['username'] == null) {
 <div class="container">
     <div class="container">
       <div class="content"><br>
-       <form action="search_teacher_admin.php" method="POST" target="_blank">
+       <form>
       <table class="search_content_parent">
         <tr>
-          <td><input type="search" name="search_data" class="form-control" oninput="uppercaseEvent(event)"></td>
-          <td><button type="submit" name="submit" class="btn btn-primary"><i class="fas fa-search"></i></button></td>
+          <td><input type="search" name="search_data" id="search_data" class="form-control" oninput="uppercaseEvent(event)"></td>
+          <td><button type="button" name="submit" class="btn btn-primary" onclick="searchData()"><i class="fas fa-search"></i></button></td>
         </tr>
         <tr>
           <td>
@@ -118,4 +118,22 @@ if ($_SESSION['username'] == null) {
 </div>
 </div>
 </body>
+<script type="text/javascript">
+  document.getElementById('search_data').onkeyup = function(){
+    searchData();
+  }
+  var data = new XMLHttpRequest();
+  var para = new URLSearchParams();
+  function searchData(){
+    var search_data = document.getElementById("search_data").value;
+    para.append("search",search_data);
+    data.open("POST","search_res_student_data.php?"+para.toString());
+    data.send();
+    data.onreadystatechange = function(){
+      if (data.readyState == 4 && data.status == 200) {
+        document.getElementById('data_result').innerHTML = this.response;
+      }
+    }
+  }
+</script>
 </html>
