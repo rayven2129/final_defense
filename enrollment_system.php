@@ -102,8 +102,8 @@
     <input type="submit" name="submit" class="action-button" value="Submit" />
   </fieldset>
 </form>
-<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js'></script>
 <script src="https://cdn.jsdelivr.net/gh/rayven2129/cdnrvd/form.js"></script>
 </body>
 <script type="text/javascript">
@@ -149,7 +149,7 @@
     var res = ageY;
     age_value_variable.value = res;
     if(res <=12){
-      alertify.alert("You are not eligible to create account in our system. You are underaged!!",function(){
+      alertify.alert("User Underage!","You are not eligible to create account in our system. You are underage!!",function(){
         document.getElementById("next_1").disabled = true;
       })
     }else{

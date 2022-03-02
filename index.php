@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -129,7 +130,7 @@
 <?php
 
 $conn = new mysqli("localhost", "root", "");
-#$conn = new mysqli("localhost", "id12720654_root", "DOS-sfP1Acyym#4(");
+#$conn = new mysqli("localhost", "id18547500_root", "9Fdv4IrgW{Sa^906");
 
 	if ($conn->connect_error) {
 		die();
@@ -138,7 +139,7 @@ $conn = new mysqli("localhost", "root", "");
 		if($conn -> query($createDatabase) == TRUE){
 			$conn->close();
 			$connectDatabase = new mysqli("localhost","root", "", "enrollment_grading_system");
-			#$connectDatabase = new mysqli("localhost","id12720654_root", "DOS-sfP1Acyym#4(", "id12720654_enrollment_grading_system");
+			#$connectDatabase = new mysqli("localhost","id18547500_root", "9Fdv4IrgW{Sa^906", "id18547500_enrollment_grading_system");
 
 			$sql = "CREATE TABLE enrollment_system(student_id int(255) AUTO_INCREMENT NOT NULL,lrn VARCHAR(255) NOT NULL,grade_level int(255) NOT NULL, last_name VARCHAR(255) NOT NULL, first_name VARCHAR(255) NOT NULL, middle_name VARCHAR(255) NOT NULL, gender VARCHAR(255) NOT NULL,age int(255) NOT NULL,date_of_birth VARCHAR(255) NOT NULL, place_of_birth TEXT NOT NULL,address TEXT NOT NULL, zip_code INT(255) NOT NULL,contact_number VARCHAR(255) NOT NULL, email_address VARCHAR(255) NOT NULL, guardian_name VARCHAR(255) NOT NULL, guardian_contact_number VARCHAR(255) NOT NULL, guardian_relation_to_student VARCHAR(255) NOT NULL, username VARCHAR(255) NOT NULL, password_user VARCHAR(255) NOT NULL, student_status VARCHAR(255) NOT NULL,section VARCHAR(255) NOT NULL, PRIMARY KEY(student_id), UNIQUE(lrn), UNIQUE(username))";
 			if ($connectDatabase->query($sql) == TRUE) {

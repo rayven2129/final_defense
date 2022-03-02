@@ -1,6 +1,6 @@
 <?php
 session_start();
-$conn = new mysqli("localhost", "root", "", "enrollment_grading_system");
+include("connect.php");
 $username = '';
 $username = $_SESSION['username'];
 	if ($username == '') {

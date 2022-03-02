@@ -1,8 +1,8 @@
 <?php
 session_start();
 include("connect.php");
-$username = $conn->real_escape_string($_GET['username']);
-$password = $conn->real_escape_string($_GET['password']);
+$username = $conn->real_escape_string($_REQUEST['username']);
+$password = $conn->real_escape_string($_REQUEST['password']);
 
 $sql = "SELECT * FROM enrollment_system WHERE username = '$username' AND password_user = '$password'";
 $result = $conn->query($sql);
